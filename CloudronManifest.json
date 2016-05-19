@@ -1,0 +1,25 @@
+{
+  "id": "lamp.cloudronapp",
+  "title": "LAMP app",
+  "author": "Cloudron developers",
+  "description": "file://DESCRIPTION.md",
+  "tagline": "An empty LAMP app",
+  "version": "0.1.0",
+  "healthCheckPath": "/",
+  "httpPort": 8000,
+  "manifestVersion": 1,
+  "website": "https://cloudron.io/",
+  "contactEmail": "apps@cloudron.io",
+  "icon": "icon.png",
+  "addons": {
+    "mysql": {},
+    "localstorage": {},
+    "sendmail": {},
+    "ldap": {}
+  },
+  "tags": [ "apache", "php", "mysql", "linux" ],
+  "developmentMode": false,
+  "mediaLinks": [],
+  "changelog": "file://CHANGELOG",
+  "minBoxVersion": "0.13.3"
+}
