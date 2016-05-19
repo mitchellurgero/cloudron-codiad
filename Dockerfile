@@ -21,6 +21,7 @@ RUN sed -e 's/upload_max_filesize = .*/upload_max_filesize = 8M/' \
         -e 's,;session.save_path.*,session.save_path = "/run/app/sessions",' \
         -i /etc/php5/apache2/php.ini
 
+ADD index.html /app/code/index.html
 ADD start.sh /app/code/start.sh
 
 CMD [ "/app/code/start.sh" ]

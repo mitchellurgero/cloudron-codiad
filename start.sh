@@ -3,6 +3,11 @@
 set -eu
 
 mkdir -p /app/data
+
+if [ ! -f "/app/data/index.html" ]; then
+	cp /app/code/index.html /app/data/index.html
+fi
+
 chown -R www-data:www-data /app/data /run/app
 
 echo "Starting apache"
