@@ -3,7 +3,7 @@
 set -eu
 
 mkdir -p /app/data
-chown -R www-data:www-data /app/data /run/wordpress
+chown -R www-data:www-data /app/data /run/app
 
 echo "Starting apache"
 APACHE_CONFDIR="" source /etc/apache2/envvars
