@@ -10,7 +10,7 @@
   "manifestVersion": 1,
   "website": "https://cloudron.io/",
   "contactEmail": "apps@cloudron.io",
-  "icon": "icon.png",
+  "icon": "logo.png",
   "addons": {
     "mysql": {},
     "localstorage": {},
