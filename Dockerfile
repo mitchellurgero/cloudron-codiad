@@ -10,9 +10,11 @@ RUN sed -e 's,^ErrorLog.*,ErrorLog "|/bin/cat",' -i /etc/apache2/apache2.conf
 RUN sed -e "s,MaxSpareServers[^:].*,MaxSpareServers 5," -i /etc/apache2/mods-available/mpm_prefork.conf
 
 RUN a2disconf other-vhosts-access-log
-ADD apache2-app.conf /etc/apache2/sites-available/app.conf
-RUN ln -sf /etc/apache2/sites-available/app.conf /etc/apache2/sites-enabled/app.conf
 RUN echo "Listen 8000" > /etc/apache2/ports.conf
+
+ADD apache2-app.conf /app/code/apache2-app.conf
+RUN ln -sf /app/data/apache2-app.conf /etc/apache2/sites-available/app.conf
+RUN ln -sf /etc/apache2/sites-available/app.conf /etc/apache2/sites-enabled/app.conf
 
 # configure mod_php
 RUN a2enmod php5

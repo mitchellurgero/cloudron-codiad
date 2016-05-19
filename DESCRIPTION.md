@@ -1,6 +1,6 @@
 Empty LAMP Stack.
 
-Use `cloudron push` to copy files into `/app/data/` and `cloudron exec` to get a remote terminal.
+Use `cloudron push` to copy files into `/app/data/public/` and `cloudron exec` to get a remote terminal.
 
 See [here](https://cloudron.io/references/cli.html) for how to get the `cloudron` command line tool.
 

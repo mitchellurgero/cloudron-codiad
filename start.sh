@@ -2,10 +2,14 @@
 
 set -eu
 
-mkdir -p /app/data
+mkdir -p /app/data/public
 
-if [ ! -f "/app/data/index.html" ]; then
-	cp /app/code/index.html /app/data/index.html
+if [ ! -f "/app/data/public/index.html" ]; then
+    cp /app/code/index.html /app/data/public/index.html
+fi
+
+if [ ! -f "/app/data/apache2-app.conf" ]; then
+    cp /app/code/apache2-app.conf /app/data/apache2-app.conf
 fi
 
 chown -R www-data:www-data /app/data /run/app
