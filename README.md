@@ -1,4 +1,4 @@
-# Wordpress Cloudron App
+# LAMP Stack Cloudron App
 
 This repository contains the Cloudron app package source for a plain LAMP stack.
 
@@ -17,7 +17,7 @@ cloudron install --appstore-id lamp.cloudronapp
 The app package can be built using the [Cloudron command line tooling](https://cloudron.io/references/cli.html).
 
 ```
-cd wordpress-app
+cd lamp-app
 
 cloudron build
 cloudron install
