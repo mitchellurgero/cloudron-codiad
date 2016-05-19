@@ -1,6 +1,8 @@
-Empty LAMP Stack. Use `cloudron push` to copy files into `/app/data/` and `cloudron exec` to get a remote terminal.
+Empty LAMP Stack.
 
-See https://cloudron.io/references/cli.html for how to get the `cloudron` command line tool.
+Use `cloudron push` to copy files into `/app/data/` and `cloudron exec` to get a remote terminal.
+
+See [here](https://cloudron.io/references/cli.html) for how to get the `cloudron` command line tool.
 
 If you want to run for example a custom WordPress within this app, please note that the code will run behind a nginx proxy.
 Apps like WordPress require you to let the app know about that fact.
