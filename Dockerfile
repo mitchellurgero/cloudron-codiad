@@ -12,17 +12,16 @@ RUN sed -e "s,MaxSpareServers[^:].*,MaxSpareServers 5," -i /etc/apache2/mods-ava
 RUN a2disconf other-vhosts-access-log
 RUN echo "Listen 8000" > /etc/apache2/ports.conf
 
-ADD apache2-app.conf /app/code/apache2-app.conf
-RUN ln -sf /app/data/apache2-app.conf /etc/apache2/sites-available/app.conf
-RUN ln -sf /etc/apache2/sites-available/app.conf /etc/apache2/sites-enabled/app.conf
-
 # configure mod_php
-RUN a2enmod php5
-RUN a2enmod rewrite
+RUN a2enmod php5 rewrite dav dav_fs authnz_ldap
 RUN sed -e 's/upload_max_filesize = .*/upload_max_filesize = 8M/' \
         -e 's,;session.save_path.*,session.save_path = "/run/app/sessions",' \
         -i /etc/php5/apache2/php.ini
 
+RUN ln -sf /app/data/apache2-app.conf /etc/apache2/sites-available/app.conf
+RUN ln -sf /etc/apache2/sites-available/app.conf /etc/apache2/sites-enabled/app.conf
+
+ADD apache2-app.conf /app/code/apache2-app.conf
 ADD index.html /app/code/index.html
 ADD start.sh /app/code/start.sh
 
