@@ -24,23 +24,23 @@
       "description": "FTP control Port",
       "defaultValue": 29600
     },
-    "FTP_PORT_PASSV_0": {
-      "title": "FTP PASSV Port 0",
+    "FTP_PORT_PASV_0": {
+      "title": "FTP PASV Port 0",
       "description": "FTP data port 0. Ports have to be consecutive numbers.",
       "defaultValue": 29601
     },
-    "FTP_PORT_PASSV_1": {
-      "title": "FTP PASSV Port 1",
+    "FTP_PORT_PASV_1": {
+      "title": "FTP PASV Port 1",
       "description": "FTP data port 1. Ports have to be consecutive numbers.",
       "defaultValue": 29602
     },
-    "FTP_PORT_PASSV_2": {
-      "title": "FTP PASSV Port 2",
+    "FTP_PORT_PASV_2": {
+      "title": "FTP PASV Port 2",
       "description": "FTP data port 2. Ports have to be consecutive numbers.",
       "defaultValue": 29603
     },
-    "FTP_PORT_PASSV_3": {
-      "title": "FTP PASSV Port 3",
+    "FTP_PORT_PASV_3": {
+      "title": "FTP PASV Port 3",
       "description": "FTP data port 3. Ports have to be consecutive numbers.",
       "defaultValue": 29604
     }

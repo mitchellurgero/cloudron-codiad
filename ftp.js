@@ -40,8 +40,8 @@ server = new ftpd.FtpServer(options.host, {
     getRoot: function() {
       return '/app/data/public';
     },
-    pasvPortRangeStart: process.env.FTP_PORT_PASSV_0 || 7003,
-    pasvPortRangeEnd: process.env.FTP_PORT_PASSV_3 || 7006,
+    pasvPortRangeStart: process.env.FTP_PORT_PASV_0 || 7003,
+    pasvPortRangeEnd: process.env.FTP_PORT_PASV_3 || 7006,
     tlsOptions: options.tls,
     allowUnauthorizedTls: true,
     useWriteFile: false,
