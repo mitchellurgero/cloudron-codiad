@@ -21,8 +21,17 @@ RUN sed -e 's/upload_max_filesize = .*/upload_max_filesize = 8M/' \
 RUN ln -sf /app/data/apache2-app.conf /etc/apache2/sites-available/app.conf
 RUN ln -sf /etc/apache2/sites-available/app.conf /etc/apache2/sites-enabled/app.conf
 
+ENV PATH /usr/local/node-4.2.1/bin:$PATH
+
+RUN cd /app/code && npm install ftpd
+
 ADD apache2-app.conf /app/code/apache2-app.conf
 ADD index.html /app/code/index.html
 ADD start.sh /app/code/start.sh
+ADD ftp.js /app/code/ftp.js
+
+# configure supervisor
+RUN sed -e 's,^logfile=.*$,logfile=/run/app/supervisord.log,' -i /etc/supervisor/supervisord.conf
+ADD supervisor/ /etc/supervisor/conf.d/
 
 CMD [ "/app/code/start.sh" ]

@@ -17,6 +17,23 @@
     "sendmail": {},
     "ldap": {}
   },
+  "tcpPorts": {
+    "FTP_PORT": {
+      "title": "FTP Port",
+      "description": "FTP control Port",
+      "defaultValue": 29600
+    },
+    "FTP_PORT_PASSV_0": {
+      "title": "FTP PASSV Port 0",
+      "description": "FTP data port 0. Has to be exactly one lower than port 1.",
+      "defaultValue": 29601
+    },
+    "FTP_PORT_PASSV_1": {
+      "title": "FTP PASSV Port 1",
+      "description": "FTP data port 1. Has to be exactly one higher than port 0.",
+      "defaultValue": 29602
+    }
+  },
   "tags": [ "apache", "php", "mysql", "linux" ],
   "developmentMode": false,
   "mediaLinks": [ "https://raw.githubusercontent.com/cloudron-io/lamp-app/master/medialinks/medialink_0.jpg" ],
