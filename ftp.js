@@ -1,6 +1,30 @@
 var ftpd = require('ftpd'),
     fs = require('fs'),
+    superagent = require('superagent'),
     path = require('path');
+
+var simpleAuth = process.env.SIMPLE_AUTH_URL && process.env.SIMPLE_AUTH_CLIENT_ID && process.env.API_ORIGIN;
+
+function verifyUser(username, password, callback) {
+    if (!simpleAuth) {
+        if (username === 'test' && password === 'test') return callback(null);
+        else return callback(new Error('auth failed'));
+    }
+
+    var authPayload = {
+        clientId: process.env.SIMPLE_AUTH_CLIENT_ID,
+        username: username,
+        password: password
+    };
+
+    superagent.post(process.env.SIMPLE_AUTH_URL + '/api/v1/login').send(authPayload).end(function (error, result) {
+        if (error && error.status === 401) return callback(new Error('auth failed'));
+        if (error) return callback(wrapRestError(error));
+        if (result.status !== 200) return callback(new Error('auth failed'));
+
+        callback(null);
+    });
+}
 
 var server;
 var options = {
@@ -17,7 +41,7 @@ server = new ftpd.FtpServer(options.host, {
       return '/app/data/public';
     },
     pasvPortRangeStart: process.env.FTP_PORT_PASSV_0 || 7003,
-    pasvPortRangeEnd: process.env.FTP_PORT_PASSV_1 || 7004,
+    pasvPortRangeEnd: process.env.FTP_PORT_PASSV_3 || 7006,
     tlsOptions: options.tls,
     allowUnauthorizedTls: true,
     useWriteFile: false,
@@ -32,7 +56,7 @@ server.on('client:connected', function(connection) {
     var username = null;
     console.log('client connected: ' + connection.remoteAddress);
     connection.on('command:user', function(user, success, failure) {
-        if (user === 'nebulon') {
+        if (user) {
             username = user;
             success();
         } else {
@@ -40,12 +64,13 @@ server.on('client:connected', function(connection) {
         }
     });
 
-    connection.on('command:pass', function(pass, success, failure) {
-        if (pass === 'manda') {
-            success(username);
-        } else {
-            failure();
-        }
+    connection.on('command:pass', function(password, success, failure) {
+        if (!password) return failure();
+
+        verifyUser(username, password, function (error) {
+            if (error) failure();
+            else success(username);
+        });
     });
 });
 

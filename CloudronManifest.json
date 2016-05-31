@@ -15,7 +15,8 @@
     "mysql": {},
     "localstorage": {},
     "sendmail": {},
-    "ldap": {}
+    "ldap": {},
+    "simpleauth": {}
   },
   "tcpPorts": {
     "FTP_PORT": {
@@ -25,13 +26,23 @@
     },
     "FTP_PORT_PASSV_0": {
       "title": "FTP PASSV Port 0",
-      "description": "FTP data port 0. Has to be exactly one lower than port 1.",
+      "description": "FTP data port 0. Ports have to be consecutive numbers.",
       "defaultValue": 29601
     },
     "FTP_PORT_PASSV_1": {
       "title": "FTP PASSV Port 1",
-      "description": "FTP data port 1. Has to be exactly one higher than port 0.",
+      "description": "FTP data port 1. Ports have to be consecutive numbers.",
       "defaultValue": 29602
+    },
+    "FTP_PORT_PASSV_2": {
+      "title": "FTP PASSV Port 2",
+      "description": "FTP data port 2. Ports have to be consecutive numbers.",
+      "defaultValue": 29603
+    },
+    "FTP_PORT_PASSV_3": {
+      "title": "FTP PASSV Port 3",
+      "description": "FTP data port 3. Ports have to be consecutive numbers.",
+      "defaultValue": 29604
     }
   },
   "tags": [ "apache", "php", "mysql", "linux" ],
