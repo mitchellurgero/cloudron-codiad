@@ -18,33 +18,6 @@
     "ldap": {},
     "simpleauth": {}
   },
-  "tcpPorts": {
-    "FTP_PORT": {
-      "title": "FTP Port",
-      "description": "FTP control Port",
-      "defaultValue": 29600
-    },
-    "FTP_PORT_PASV_0": {
-      "title": "FTP PASV Port 0",
-      "description": "FTP data port 0. Ports have to be consecutive numbers.",
-      "defaultValue": 29601
-    },
-    "FTP_PORT_PASV_1": {
-      "title": "FTP PASV Port 1",
-      "description": "FTP data port 1. Ports have to be consecutive numbers.",
-      "defaultValue": 29602
-    },
-    "FTP_PORT_PASV_2": {
-      "title": "FTP PASV Port 2",
-      "description": "FTP data port 2. Ports have to be consecutive numbers.",
-      "defaultValue": 29603
-    },
-    "FTP_PORT_PASV_3": {
-      "title": "FTP PASV Port 3",
-      "description": "FTP data port 3. Ports have to be consecutive numbers.",
-      "defaultValue": 29604
-    }
-  },
   "tags": [ "apache", "php", "mysql", "linux" ],
   "developmentMode": false,
   "mediaLinks": [ "https://raw.githubusercontent.com/cloudron-io/lamp-app/master/medialinks/medialink_0.jpg" ],
