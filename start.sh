@@ -19,9 +19,7 @@ sed -e "s@AuthLDAPURL .*@AuthLDAPURL ${LDAP_URL}/${LDAP_USERS_BASE_DN}?username?
 
 chown -R www-data:www-data /app/data /run
 
-echo "Cleanup apache pid"
+echo "Starting apache"
 APACHE_CONFDIR="" source /etc/apache2/envvars
 rm -f "${APACHE_PID_FILE}"
-
-echo "Starting supervisor"
-exec /usr/bin/supervisord --configuration /etc/supervisor/supervisord.conf --nodaemon -i lamp
+exec /usr/sbin/apache2 -DFOREGROUND
