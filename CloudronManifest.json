@@ -4,7 +4,7 @@
   "author": "Cloudron developers",
   "description": "file://DESCRIPTION.md",
   "tagline": "An empty LAMP stack",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "healthCheckPath": "/",
   "httpPort": 8000,
   "manifestVersion": 1,
