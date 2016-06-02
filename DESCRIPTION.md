@@ -4,7 +4,7 @@ Use `cloudron push` to copy files into `/app/data/public/` and `cloudron exec` t
 
 See [here](https://cloudron.io/references/cli.html) for how to get the `cloudron` command line tool.
 
-This app also has webdav enabled to work with the public folder. Prepend `/webdav` to your applications url and connect with a webdav enabled client.
+This app also has webdav enabled to work with the public folder. Prepend `/webdav/` to your applications url and connect with a webdav enabled client.
 
 If you want to run for example a custom WordPress within this app, please note that the code will run behind a nginx proxy.
 Apps like WordPress require you to let the app know about that fact.
