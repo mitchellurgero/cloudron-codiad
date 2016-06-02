@@ -4,9 +4,11 @@ set -eu
 
 mkdir -p /app/data/public /run/app /run/apache2
 
-if [ ! -f "/app/data/public/index.html" ]; then
-    cp /app/code/index.html /app/data/public/index.html
-fi
+# check if any index file exists
+for f in /app/data/public/index.*; do
+    [ -e "$f" ] && echo "Do not override existing index file" || cp /app/code/index.html /app/data/public/index.html
+    break
+done
 
 if [ ! -f "/app/data/apache2-app.conf" ]; then
     cp /app/code/apache2-app.conf /app/data/apache2-app.conf
