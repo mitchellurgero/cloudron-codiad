@@ -1,9 +1,9 @@
 {
   "id": "lamp.cloudronapp",
-  "title": "LAMP app",
+  "title": "LAMP",
   "author": "Cloudron developers",
   "description": "file://DESCRIPTION.md",
-  "tagline": "An empty LAMP app",
+  "tagline": "An empty LAMP stack",
   "version": "0.1.0",
   "healthCheckPath": "/",
   "httpPort": 8000,
