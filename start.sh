@@ -19,6 +19,11 @@ sed -e "s@AuthLDAPURL .*@AuthLDAPURL ${LDAP_URL}/${LDAP_USERS_BASE_DN}?username?
     -e "s@AuthLDAPBindPassword .*@AuthLDAPBindPassword ${LDAP_BIND_PASSWORD}@" \
     -i /app/data/apache2-app.conf
 
+## hook for custom start script in /app/data/run.sh
+if [ -f "/app/data/run.sh" ]; then
+	/bin/bash /app/data/run.sh
+fi
+
 chown -R www-data:www-data /app/data /run
 
 echo "Starting apache"
