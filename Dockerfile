@@ -17,6 +17,8 @@ RUN echo "Listen 8000" > /etc/apache2/ports.conf
 RUN ln -sf /app/data/apache2-app.conf /etc/apache2/sites-available/app.conf
 RUN ln -sf /etc/apache2/sites-available/app.conf /etc/apache2/sites-enabled/app.conf
 
+RUN a2enmod rewrite dav dav_fs authnz_ldap
+
 # configure mod_php
 RUN crudini --set /etc/php/7.0/apache2/php.ini PHP upload_max_filesize 8M && \
     crudini --set /etc/php/7.0/apache2/php.ini PHP post_max_size 8M && \
