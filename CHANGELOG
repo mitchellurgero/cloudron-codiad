@@ -4,3 +4,5 @@
 [0.1.1]
 - Update title and tagline
 
+[0.2.0]
+- Block executing php on /webdav
