@@ -6,3 +6,4 @@
 
 [0.2.0]
 - Block executing php on /webdav
+- Update to new base image
