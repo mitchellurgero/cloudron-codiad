@@ -1,4 +1,4 @@
-FROM cloudron/base:0.8.1
+FROM cloudron/base:0.9.0
 MAINTAINER Johannes Zellner <johannes@cloudron.io>
 
 RUN mkdir -p /app/data /app/code /run/app/sessions
