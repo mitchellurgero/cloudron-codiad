@@ -21,15 +21,12 @@ RUN apt-get update && apt-get install -y php libapache2-mod-php crudini \
     php-mbstring \
     php-mcrypt \
     php-mime-type \
-    php-mongodb \
     php-mysql \
     php-pdfparser \
-    php-pgsql \
     php-readline \
     php-soap \
     php-sql-formatter \
     php-sqlite3 \
-    php-ssh2 \
     php-tcpdf \
     php-timer \
     php-twig \

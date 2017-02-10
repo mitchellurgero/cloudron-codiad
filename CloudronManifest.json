@@ -15,10 +15,12 @@
     "mysql": {},
     "localstorage": {},
     "sendmail": {},
+    "redis": {},
     "ldap": {},
+    "oauth": {},
     "simpleauth": {}
   },
-  "tags": [ "apache", "php", "mysql", "linux" ],
+  "tags": [ "apache", "php", "mysql" ],
   "mediaLinks": [ "https://raw.githubusercontent.com/cloudron-io/lamp-app/master/medialinks/medialink_0.jpg" ],
   "changelog": "file://CHANGELOG",
   "minBoxVersion": "0.13.3"
