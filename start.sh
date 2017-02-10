@@ -10,6 +10,10 @@ for f in /app/data/public/index.*; do
     break
 done
 
+if [ ! -f "/app/data/php.ini" ]; then
+    cp /etc/php/7.0/apache2/php.ini.orig /app/data/php.ini
+fi
+
 if [ ! -f "/app/data/apache2-app.conf" ]; then
     cp /app/code/apache2-app.conf /app/data/apache2-app.conf
 fi
@@ -21,7 +25,7 @@ sed -e "s@AuthLDAPURL .*@AuthLDAPURL ${LDAP_URL}/${LDAP_USERS_BASE_DN}?username?
 
 ## hook for custom start script in /app/data/run.sh
 if [ -f "/app/data/run.sh" ]; then
-	/bin/bash /app/data/run.sh
+    /bin/bash /app/data/run.sh
 fi
 
 chown -R www-data:www-data /app/data /run

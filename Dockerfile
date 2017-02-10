@@ -4,7 +4,7 @@ MAINTAINER Johannes Zellner <johannes@cloudron.io>
 RUN mkdir -p /app/code /run/app/sessions
 WORKDIR /app/code
 
-RUN apt-get update && apt-get install -y php libapache2-mod-php crudinit \
+RUN apt-get update && apt-get install -y php libapache2-mod-php crudini \
     php-redis \
     php-bcmath \
     php-bz2 \
@@ -61,6 +61,8 @@ RUN crudini --set /etc/php/7.0/apache2/php.ini PHP upload_max_filesize 8M && \
     crudini --set /etc/php/7.0/apache2/php.ini PHP post_max_size 8M && \
     crudini --set /etc/php/7.0/apache2/php.ini PHP memory_limit 64M && \
     crudini --set /etc/php/7.0/apache2/php.ini Session session.save_path /run/app/sessions
+
+RUN mv /etc/php/7.0/apache2/php.ini /etc/php/7.0/apache2/php.ini.orig && ln -sf /app/data/php.ini /etc/php/7.0/apache2/php.ini
 
 ADD apache2-app.conf /app/code/apache2-app.conf
 ADD index.html /app/code/index.html
