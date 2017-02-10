@@ -4,7 +4,44 @@ MAINTAINER Johannes Zellner <johannes@cloudron.io>
 RUN mkdir -p /app/code /run/app/sessions
 WORKDIR /app/code
 
-RUN apt-get update && apt-get install -y php libapache2-mod-php php-redis php-zip crudini && rm -r /var/cache/apt /var/lib/apt/lists
+RUN apt-get update && apt-get install -y php libapache2-mod-php crudinit \
+    php-redis \
+    php-bcmath \
+    php-bz2 \
+    php-curl \
+    php-date \
+    php-dba \
+    php-enchant \
+    php-gd \
+    php-geoip \
+    php-gettext \
+    php-imap \
+    php-json \
+    php-log \
+    php-mbstring \
+    php-mcrypt \
+    php-mime-type \
+    php-mongodb \
+    php-mysql \
+    php-pdfparser \
+    php-pgsql \
+    php-readline \
+    php-soap \
+    php-sql-formatter \
+    php-sqlite3 \
+    php-ssh2 \
+    php-tcpdf \
+    php-timer \
+    php-twig \
+    php-uuid \
+    php-validate \
+    php-xml \
+    php-xml-parser \
+    php-xml-svg \
+    php-yac \
+    php-zip \
+    && rm -r /var/cache/apt /var/lib/apt/lists
+
 
 # configure apache
 RUN rm /etc/apache2/sites-enabled/*
