@@ -37,8 +37,8 @@ RUN apt-get update && apt-get install -y php libapache2-mod-php crudini \
     php-xml-svg \
     php-yac \
     php-zip \
-    && rm -r /var/cache/apt /var/lib/apt/lists
-
+    proftpd proftpd-mod-ldap \
+    && rm -rf /var/cache/apt /var/lib/apt/lists /etc/ssh_host_*
 
 # configure apache
 RUN rm /etc/apache2/sites-enabled/*
@@ -51,7 +51,7 @@ RUN echo "Listen 8000" > /etc/apache2/ports.conf
 RUN ln -sf /app/data/apache2-app.conf /etc/apache2/sites-available/app.conf
 RUN ln -sf /etc/apache2/sites-available/app.conf /etc/apache2/sites-enabled/app.conf
 
-RUN a2enmod rewrite dav dav_fs authnz_ldap
+RUN a2enmod rewrite
 
 # configure mod_php
 RUN crudini --set /etc/php/7.0/apache2/php.ini PHP upload_max_filesize 8M && \
@@ -62,6 +62,17 @@ RUN crudini --set /etc/php/7.0/apache2/php.ini PHP upload_max_filesize 8M && \
 RUN mv /etc/php/7.0/apache2/php.ini /etc/php/7.0/apache2/php.ini.orig && ln -sf /app/data/php.ini /etc/php/7.0/apache2/php.ini
 
 ADD apache2-app.conf /app/code/apache2-app.conf
+
+# configure proftpd
+ADD proftpd.conf /app/code/proftpd.conf.template
+
+RUN rm -rf /var/log/proftpd && ln -s /run/proftpd /var/log/proftpd
+
+# configure supervisor
+ADD supervisor/ /etc/supervisor/conf.d/
+RUN sed -e 's,^logfile=.*$,logfile=/run/supervisord.log,' -i /etc/supervisor/supervisord.conf
+
+# add code
 ADD index.html /app/code/index.html
 ADD start.sh /app/code/start.sh
 

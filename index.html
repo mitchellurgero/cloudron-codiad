@@ -10,20 +10,22 @@
 
 <body>
 
-<h4>This works!</h4>
-
-Use the <a href="https://cloudron.io/references/cli.html">cloudron</a> commandline tool to put files in this app or get a remote terminal similar to ssh.
+<center><h4>This works!</h4></center>
 
 <br/>
-<br/>
 
-Find the <i>ldap</i>, <i>mysql</i> and other addon credentials exposed as environment variables using:
+Find the <i>ldap</i>, <i>mysql</i> and other addon credentials exposed as environment variables using the <a href="https://cloudron.io/references/cli.html">cloudron commandline tool</a>:
 <pre class="code">
 <code>cloudron exec env</code>
 </pre>
 
-For a more convenient way to manage larger file sets, there is a webdav endpoint at <a href="/webdav/" target="_blank">/webdav/</a>.
-For Windows and Mac <a href="https://cyberduck.io/" target="_blank">Cyberduck</a> is a suitable webdav client.
+You can also use SFTP to transfer files using  <a href="https://cyberduck.io/" target="_blank">Cyberduck</a>,
+<a href="https://filezilla-project.org/" target="_blank">FileZilla</a> or <a href="https://www.gftp.org/" target="_blank">gFTP</a>
+(use your cloudron credentials to authenticate).
+<pre class="code">
+<code>sftp -P ##SFTP_PORT ##SFTP_DOMAIN </code>
+</pre>
+
 
 </body>
 </html>

@@ -20,8 +20,14 @@
     "oauth": {},
     "simpleauth": {}
   },
+  "tcpPorts": {
+    "SFTP_PORT": {
+      "title": "SFTP Port",
+      "description": "SFTP Port over which code can be pushed & pulled",
+      "defaultValue": 2222
+    }
+  },
   "tags": [ "apache", "php", "mysql" ],
   "mediaLinks": [ "https://raw.githubusercontent.com/cloudron-io/lamp-app/master/medialinks/medialink_0.jpg" ],
-  "changelog": "file://CHANGELOG",
-  "minBoxVersion": "0.13.3"
+  "changelog": "file://CHANGELOG"
 }
