@@ -3,16 +3,15 @@
 LAMP is an archetypal model of web service stacks, named as an acronym of the names of its original four open-source components: the Linux operating system,
 the Apache HTTP Server, the MySQL relational database management system (RDBMS), and the PHP programming language.
 
+### SFTP
+
+This app also bundles [ProFTPD](http://www.proftpd.org/) which provides `sftp://` access. Use your preferred ftp client to manage all files on the server. The `public` folder contains your PHP files. You will find `php.ini` at the root directory.
+
 
 ### Remote Terminal
 
 Use `cloudron exec` for a remote shell connection into the app to adjust configuration files like `php.ini`.
 See [here](https://cloudron.io/references/cli.html) for how to get the `cloudron` command line tool.
-
-
-### File System Access
-
-This app also bundles [ProFTPD](http://www.proftpd.org/) which provides `sftp://` access. Use your preferred ftp client to manage all files on the server.
 
 
 ### Execution Environment
