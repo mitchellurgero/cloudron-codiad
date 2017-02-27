@@ -48,11 +48,11 @@
 <h2>MySQL credentials</h2>
 <p>Use the following environment variables in the PHP code to access MySQL:</p>
 <pre>
-$_ENV["MYSQL_HOST"]
-$_ENV["MYSQL_PORT"]
-$_ENV["MYSQL_USERNAME"]
-$_ENV["MYSQL_PASSWORD"]
-$_ENV["MYSQL_DATABASE"]
+getenv("MYSQL_HOST")
+getenv("MYSQL_PORT")
+getenv("MYSQL_USERNAME")
+getenv("MYSQL_PASSWORD")
+getenv("MYSQL_DATABASE")
 </pre>
 
 <br/>
