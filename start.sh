@@ -6,7 +6,7 @@ mkdir -p /app/data/public /run/apache2 /run/proftpd /run/app
 
 # check if any index file exists
 for f in /app/data/public/index.*; do
-    [ -e "$f" ] && echo "Do not override existing index file" || cp /app/code/index.html /app/data/public/index.html
+    [ -e "$f" ] && echo "Do not override existing index file" || cp /app/code/index.php /app/data/public/index.php
     break
 done
 
@@ -35,10 +35,10 @@ else
         -e "s/##LDAP_GID/$(id -g www-data)/g" \
         /app/code/proftpd.conf.template > /run/proftpd/proftpd.conf
 
-    if [[ -f /app/data/public/index.html ]]; then
+    if [[ -f /app/data/public/index.php ]]; then
         sed -e "s,##SFTP_PORT,${SFTP_PORT}," \
             -e "s,##SFTP_DOMAIN,${APP_DOMAIN}," \
-            -i /app/data/public/index.html
+            -i /app/data/public/index.php
     fi
 fi
 

@@ -73,8 +73,7 @@ ADD supervisor/ /etc/supervisor/conf.d/
 RUN sed -e 's,^logfile=.*$,logfile=/run/supervisord.log,' -i /etc/supervisor/supervisord.conf
 
 # add code
-ADD index.html /app/code/index.html
-ADD start.sh /app/code/start.sh
+COPY start.sh index.php /app/code/
 
 # make cloudron exec sane
 WORKDIR /app/data
