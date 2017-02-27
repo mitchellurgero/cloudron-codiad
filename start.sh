@@ -10,18 +10,11 @@ for f in /app/data/public/index.*; do
     break
 done
 
-# check for old webdav enabled apache2-app.conf
-if grep "### WARNING the following lines will be updated dynamically by start.sh" /app/data/apache2-app.conf; then
-    echo "=> Removing old apache2-app.conf"
-    rm -f /app/data/apache2-app.conf
-fi
+# cleanup for old apache2-app.conf
+rm -f /app/data/apache2-app.conf
 
 if [ ! -f "/app/data/php.ini" ]; then
     cp /etc/php/7.0/apache2/php.ini.orig /app/data/php.ini
-fi
-
-if [ ! -f "/app/data/apache2-app.conf" ]; then
-    cp /app/code/apache2-app.conf /app/data/apache2-app.conf
 fi
 
 # SFTP_PORT can be unset to disable SFTP
