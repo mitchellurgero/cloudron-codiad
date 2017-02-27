@@ -7,3 +7,9 @@
 [0.2.0]
 - Block executing php on /webdav
 - Update to new base image
+
+[0.3.0]
+- Replace webdav with sftp
+- Make php.ini configurable
+- Preinstall all common php modules
+- Update to base image 0.10.0
