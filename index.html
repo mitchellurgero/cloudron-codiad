@@ -10,22 +10,38 @@
 
 <body>
 
-<center><h4>This works!</h4></center>
+<center><h3>LAMP App</h3></center>
 
 <br/>
 
-Find the <i>ldap</i>, <i>mysql</i> and other addon credentials exposed as environment variables using the <a href="https://cloudron.io/references/cli.html">cloudron commandline tool</a>:
+<h5>MySQL credentials</h5>
+Use the following environment variables in the PHP code to access MySQL:
 <pre class="code">
-<code>cloudron exec env</code>
+<code>$_ENV["MYSQL_HOST"]
+$_ENV["MYSQL_PORT"]
+$_ENV["MYSQL_USERNAME"]
+$_ENV["MYSQL_PASSWORD"]
+$_ENV["MYSQL_DATABASE"]</code>
 </pre>
 
-You can also use SFTP to transfer files using  <a href="https://cyberduck.io/" target="_blank">Cyberduck</a>,
+<br/>
+
+<h5>Logs</h5>
+Apache logs can be viewed using the <a href="https://cloudron.io/references/cli.html">cloudron commandline tool</a>.
+<pre class="code">
+<code>cloudron logs -f</code>
+</pre>
+
+<br/>
+
+<h5>SFTP Transfer</h5>
+
+You can SFTP files to the <b>public</b> folder using  <a href="https://cyberduck.io/" target="_blank">Cyberduck</a>,
 <a href="https://filezilla-project.org/" target="_blank">FileZilla</a> or <a href="https://www.gftp.org/" target="_blank">gFTP</a>
 (use your cloudron credentials to authenticate).
 <pre class="code">
-<code>sftp -P ##SFTP_PORT ##SFTP_DOMAIN </code>
+<code>sftp -P ##SFTP_PORT ##SFTP_DOMAIN:public/ </code>
 </pre>
-
 
 </body>
 </html>
