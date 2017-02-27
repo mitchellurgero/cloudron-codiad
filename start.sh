@@ -2,7 +2,7 @@
 
 set -eu
 
-mkdir -p /app/data/public /run/apache2 /run/proftpd
+mkdir -p /app/data/public /run/apache2 /run/proftpd /run/app
 
 # check if any index file exists
 for f in /app/data/public/index.*; do
@@ -61,7 +61,7 @@ if [ -f "/app/data/run.sh" ]; then
     /bin/bash /app/data/run.sh
 fi
 
-chown -R www-data:www-data /app/data /run/apache2 /run/proftpd
+chown -R www-data:www-data /app/data /run/apache2 /run/proftpd /run/app
 
 echo "Starting supervisord"
 exec /usr/bin/supervisord --configuration /etc/supervisor/supervisord.conf --nodaemon -i Lamp
