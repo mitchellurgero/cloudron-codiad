@@ -10,6 +10,12 @@ for f in /app/data/public/index.*; do
     break
 done
 
+# check for old webdav enabled apache2-app.conf
+if grep "### WARNING the following lines will be updated dynamically by start.sh" /app/data/apache2-app.conf; then
+    echo "=> Removing old apache2-app.conf"
+    rm -f /app/data/apache2-app.conf
+fi
+
 if [ ! -f "/app/data/php.ini" ]; then
     cp /etc/php/7.0/apache2/php.ini.orig /app/data/php.ini
 fi
@@ -65,4 +71,3 @@ chown -R www-data:www-data /app/data /run/apache2 /run/proftpd /run/app
 
 echo "Starting supervisord"
 exec /usr/bin/supervisord --configuration /etc/supervisor/supervisord.conf --nodaemon -i Lamp
-
