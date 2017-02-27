@@ -46,7 +46,7 @@ RUN sed -e 's,^ErrorLog.*,ErrorLog "|/bin/cat",' -i /etc/apache2/apache2.conf
 RUN sed -e "s,MaxSpareServers[^:].*,MaxSpareServers 5," -i /etc/apache2/mods-available/mpm_prefork.conf
 
 RUN a2disconf other-vhosts-access-log
-RUN echo "Listen 8000" > /etc/apache2/ports.conf
+RUN echo "Listen 80" > /etc/apache2/ports.conf
 RUN a2enmod rewrite
 
 # configure mod_php

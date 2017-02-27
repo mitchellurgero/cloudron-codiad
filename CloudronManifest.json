@@ -6,7 +6,7 @@
   "tagline": "An empty LAMP stack",
   "version": "0.3.0",
   "healthCheckPath": "/",
-  "httpPort": 8000,
+  "httpPort": 80,
   "manifestVersion": 1,
   "website": "https://cloudron.io/",
   "contactEmail": "apps@cloudron.io",
