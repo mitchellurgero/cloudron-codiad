@@ -4,8 +4,10 @@
 
   <style>
 
-    html {
-      margin: 0 33%;
+    body {
+      width: 50%;
+      min-width: 640px;
+      margin: auto;
       font-family: Helvetica;
       color: #333;
     }
@@ -15,7 +17,7 @@
       background: #333;
       color: white;
       border: none;
-      width: 100%;
+      width: 99%;
       padding: 10px;
       text-align: left;
       font-size: 13px;
