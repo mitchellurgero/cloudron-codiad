@@ -55,7 +55,7 @@ describe('Application life cycle test', function () {
         browser.get('https://' + app.fqdn);
 
         waitForElement(by.xpath('//*[text()="Cloudron LAMP App"]'), function () {
-            waitForElement(by.xpath('//*[text()="PHP Version 7.0.15-0ubuntu0.16.04.2"]'), callback);
+            waitForElement(by.xpath('//*[text()="PHP Version 7.0.15-0ubuntu0.16.04.4"]'), callback);
         });
     }
 
