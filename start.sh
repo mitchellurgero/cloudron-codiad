@@ -35,8 +35,7 @@ else
         /app/code/proftpd.conf.template > /run/proftpd/proftpd.conf
 
     if [[ -f /app/data/public/index.php ]]; then
-        sed -e "s,##SFTP_PORT,${SFTP_PORT}," \
-            -e "s,##SFTP_DOMAIN,${APP_DOMAIN}," \
+        sed -e "s,^sftp -P.*public/$,sftp -P ${SFTP_PORT} ${APP_DOMAIN}:public/,"
             -i /app/data/public/index.php
     fi
 fi
