@@ -17,8 +17,7 @@
     "sendmail": {},
     "redis": {},
     "ldap": {},
-    "oauth": {},
-    "simpleauth": {}
+    "oauth": {}
   },
   "tcpPorts": {
     "SFTP_PORT": {
