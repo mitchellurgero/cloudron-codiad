@@ -3,7 +3,7 @@
   "title": "LAMP",
   "author": "Cloudron developers",
   "description": "file://DESCRIPTION.md",
-  "tagline": "An empty LAMP stack",
+  "tagline": "An empty LAMP stack (PHP 7)",
   "version": "0.4.0",
   "healthCheckPath": "/",
   "httpPort": 80,
