@@ -4,6 +4,7 @@
 
 var execSync = require('child_process').execSync,
     expect = require('expect.js'),
+    net = require('net'),
     path = require('path'),
     superagent = require('superagent'),
     util = require('util'),
@@ -135,7 +136,37 @@ describe('Application life cycle test', function () {
     it('can get uploaded file', uploadedFileExists);
     it('can access phpmyadmin', checkPhpMyAdmin);
 
+    // disable SFTP
+    it('can disable sftp', function () {
+        execSync('cloudron configure --wait -p SFTP_PORT=', { cwd: path.resolve(__dirname, '..'), stdio: 'inherit' });
+    });
+    it('can view welcome page', welcomePage);
+    it('cannot upload file with sftp', function (done) {
+        var client = new net.Socket();
+        client.setTimeout(TEST_TIMEOUT);
+
+        client.connect(2222, app.fqdn, function() {
+            client.destroy();
+            done(new Error('Connected'));
+        });
+
+        client.on('error', function (error) {
+            done(null);
+        });
+    });
+
+    it('cannot access phpmyadmin', function (done) {
+        superagent.get('https://' + app.fqdn + '/phpmyadmin').end(function (error, result) {
+            if (error && !error.response) return done(error); // network error
+
+            if (result.statusCode !== 404) return done('Expecting 404 error');
+
+            done();
+        });
+    });
+
     it('uninstall app', function () {
         execSync('cloudron uninstall --app ' + app.id, { cwd: path.resolve(__dirname, '..'), stdio: 'inherit' });
     });
+
 });
