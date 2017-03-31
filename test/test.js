@@ -67,6 +67,19 @@ describe('Application life cycle test', function () {
         });
     }
 
+    function checkPhpMyAdmin(callback) {
+        browser.get('https://' + app.fqdn + '/phpmyadmin');
+
+        browser.wait(by.xpath('//h2[text()="General settings"]'), TEST_TIMEOUT)
+            .catch(function () {
+            // let's assume we could not login
+
+            browser.get('https://' + process.env.USERNAME + ':' + process.env.PASSWORD + '@' + app.fqdn + '/phpmyadmin');
+
+            waitForElement(by.xpath('//h2[text()="General settings"]'), callback);
+        });
+    }
+
     xit('build app', function () {
         execSync('cloudron build', { cwd: path.resolve(__dirname, '..'), stdio: 'inherit' });
     });
@@ -90,6 +103,8 @@ describe('Application life cycle test', function () {
         execSync(util.format('lftp sftp://%s:%s@%s:%s  -e "set sftp:auto-confirm yes; cd public/; put test.php; bye"', process.env.USERNAME, process.env.PASSWORD, app.fqdn, app.portBindings.SFTP_PORT));
     });
     it('can get uploaded file', uploadedFileExists);
+
+    it('can access phpmyadmin', checkPhpMyAdmin);
 
     it('backup app', function () {
         execSync('cloudron backup create --app ' + app.id, { cwd: path.resolve(__dirname, '..'), stdio: 'inherit' });
