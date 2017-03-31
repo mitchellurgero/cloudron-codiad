@@ -140,22 +140,24 @@ describe('Application life cycle test', function () {
     it('can disable sftp', function () {
         execSync('cloudron configure --wait -p SFTP_PORT=', { cwd: path.resolve(__dirname, '..'), stdio: 'inherit' });
     });
-    it('can view welcome page', welcomePage);
-    it('cannot upload file with sftp', function (done) {
+    it('(nosftp) can view welcome page', welcomePage);
+    it('(nosftp cannot upload file with sftp', function (done) {
         var client = new net.Socket();
-        client.setTimeout(TEST_TIMEOUT);
+        client.setTimeout(10000);
 
         client.connect(2222, app.fqdn, function() {
             client.destroy();
             done(new Error('Connected'));
         });
 
+        client.on('timeout', function () { done(); }); // the packet just got dropped (good)
+
         client.on('error', function (error) {
-            done(null);
+            done(new Error('Should have got timeout but got error:' + error.message));
         });
     });
 
-    it('cannot access phpmyadmin', function (done) {
+    it('(nosftp) cannot access phpmyadmin', function (done) {
         superagent.get('https://' + app.fqdn + '/phpmyadmin').end(function (error, result) {
             if (error && !error.response) return done(error); // network error
 
