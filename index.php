@@ -59,22 +59,35 @@ getenv("MYSQL_DATABASE")
 
 <br/>
 
-<h2>Logs</h2>
-<p>Apache logs can be viewed using the <a href="https://cloudron.io/references/cli.html" target="_blank">cloudron commandline tool</a>.</p>
-<pre>
-cloudron logs -f
-</pre>
-
-<br/>
-
 <h2>SFTP Transfer</h2>
 <p>
   You can SFTP files to the <b>public</b> folder using  <a href="https://cyberduck.io/" target="_blank">Cyberduck</a>,
   <a href="https://filezilla-project.org/" target="_blank">FileZilla</a> or <a href="https://www.gftp.org/" target="_blank">gFTP</a>
   (use your cloudron credentials to authenticate).
 </p>
+<p>
+  We recommend disabling SFTP access (from Cloudron's configuration panel) once you have uploaded your code.
+</p>
 <pre>
 sftp -P 2222 surfer.nebulon.info:public/
+</pre>
+
+<br/>
+
+<h2>phpMyAdmin access</h2>
+<p>
+  You can access phpMyAdmin using your Cloudron credentials <a href="/phpmyadmin" target="_blank">here</a>.
+</p>
+<p>
+  Note that disabling SFTP access also disables phpMyAdmin.
+</p>
+
+<br/>
+
+<h2>Logs</h2>
+<p>Apache logs can be viewed using the <a href="https://cloudron.io/references/cli.html" target="_blank">cloudron commandline tool</a>.</p>
+<pre>
+cloudron logs -f
 </pre>
 
 <br/>
