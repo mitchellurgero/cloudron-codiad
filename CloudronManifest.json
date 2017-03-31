@@ -22,7 +22,7 @@
   "tcpPorts": {
     "SFTP_PORT": {
       "title": "SFTP Port",
-      "description": "SFTP Port over which code can be pushed & pulled",
+      "description": "SFTP Port for syncing code. Disabling SFTP also disables phpMyAdmin",
       "defaultValue": 2222
     }
   },

@@ -47,7 +47,7 @@ RUN sed -e "s,MaxSpareServers[^:].*,MaxSpareServers 5," -i /etc/apache2/mods-ava
 
 RUN a2disconf other-vhosts-access-log
 RUN echo "Listen 80" > /etc/apache2/ports.conf
-RUN a2enmod rewrite
+RUN a2enmod rewrite authnz_ldap
 
 # configure mod_php
 RUN crudini --set /etc/php/7.0/apache2/php.ini PHP upload_max_filesize 8M && \
@@ -58,7 +58,13 @@ RUN crudini --set /etc/php/7.0/apache2/php.ini PHP upload_max_filesize 8M && \
 RUN mv /etc/php/7.0/apache2/php.ini /etc/php/7.0/apache2/php.ini.orig && ln -sf /app/data/php.ini /etc/php/7.0/apache2/php.ini
 
 # configure site
-COPY apache2-app.conf /etc/apache2/sites-enabled/app.conf
+COPY apache2-app.conf /app/code/apache2-app.conf
+RUN ln -s /run/apache2/app.conf /etc/apache2/sites-enabled/app.conf
+
+# phpMyAdmin
+RUN mkdir -p /app/code/phpmyadmin && \
+    curl -L https://files.phpmyadmin.net/phpMyAdmin/4.7.0/phpMyAdmin-4.7.0-english.tar.gz | tar zxvf - -C /app/code/phpmyadmin --strip-components=1
+COPY phpmyadmin-config.inc.php /app/code/phpmyadmin/config.inc.php
 
 # configure proftpd
 ADD proftpd.conf /app/code/proftpd.conf.template
