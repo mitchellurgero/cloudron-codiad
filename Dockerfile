@@ -38,6 +38,7 @@ RUN apt-get update && apt-get install -y php libapache2-mod-php crudini \
     php-yac \
     php-zip \
     proftpd proftpd-mod-ldap \
+    cron \
     && rm -rf /var/cache/apt /var/lib/apt/lists /etc/ssh_host_*
 
 # configure apache
@@ -70,6 +71,9 @@ COPY phpmyadmin-config.inc.php /app/code/phpmyadmin/config.inc.php
 ADD proftpd.conf /app/code/proftpd.conf.template
 
 RUN rm -rf /var/log/proftpd && ln -s /run/proftpd /var/log/proftpd
+
+# configure cron
+RUN echo "* * * * * root test -f /app/data/crontab && ( crontab -u www-data /app/data/crontab )" > /etc/cron.d/lamp-app
 
 # configure supervisor
 ADD supervisor/ /etc/supervisor/conf.d/
