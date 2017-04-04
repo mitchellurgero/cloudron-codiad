@@ -72,9 +72,6 @@ ADD proftpd.conf /app/code/proftpd.conf.template
 
 RUN rm -rf /var/log/proftpd && ln -s /run/proftpd /var/log/proftpd
 
-# configure cron
-RUN echo "* * * * * root test -f /app/data/crontab && ( crontab -u www-data /app/data/crontab )" > /etc/cron.d/lamp-app
-
 # configure supervisor
 ADD supervisor/ /etc/supervisor/conf.d/
 RUN sed -e 's,^logfile=.*$,logfile=/run/supervisord.log,' -i /etc/supervisor/supervisord.conf

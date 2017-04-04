@@ -70,6 +70,11 @@ if [ -f "/app/data/run.sh" ]; then
     /bin/bash /app/data/run.sh
 fi
 
+## configure in-container Crontab
+if [ -f "/app/data/crontab" ]; then
+  crontab -u www-data /app/data/crontab
+fi
+
 chown -R www-data:www-data /app/data /run/apache2 /run/proftpd /run/app
 
 echo "Starting supervisord"

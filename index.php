@@ -86,10 +86,10 @@ sftp -P 2222 surfer.nebulon.info:public/
 
 <h2>Cron</h2>
 <p>
-  Just put a file called crontab to the directory /app/data and it will picked up automatically. It has to be in the cron syntax without username.
+  Just put a file called crontab to the directory /app/data and it will picked up at next app restart. It has to be in the cron syntax without username.
 </p>
 <p>
-  Commands are executed as the user www-data.
+  Commands are executed as the user www-data. See <a href="https://linux.die.net/man/5/crontab">manpage</a> for a description of the file.
 </p>
 
 <br/>
