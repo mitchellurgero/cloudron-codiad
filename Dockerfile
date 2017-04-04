@@ -38,6 +38,7 @@ RUN apt-get update && apt-get install -y php libapache2-mod-php crudini \
     php-yac \
     php-zip \
     proftpd proftpd-mod-ldap \
+    cron \
     && rm -rf /var/cache/apt /var/lib/apt/lists /etc/ssh_host_*
 
 # configure apache

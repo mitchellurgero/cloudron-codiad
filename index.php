@@ -84,6 +84,16 @@ sftp -P 2222 surfer.nebulon.info:public/
 
 <br/>
 
+<h2>Cron</h2>
+<p>
+  Just put a file called crontab to the directory /app/data and it will picked up at next app restart. It has to be in the cron syntax without username.
+</p>
+<p>
+  Commands are executed as the user www-data. See <a href="https://linux.die.net/man/5/crontab">manpage</a> for a description of the file.
+</p>
+
+<br/>
+
 <h2>Logs</h2>
 <p>Apache logs can be viewed using the <a href="https://cloudron.io/references/cli.html" target="_blank">cloudron commandline tool</a>.</p>
 <pre>
