@@ -4,6 +4,7 @@
 
 var execSync = require('child_process').execSync,
     expect = require('expect.js'),
+    fs = require('fs'),
     net = require('net'),
     path = require('path'),
     superagent = require('superagent'),
@@ -11,7 +12,8 @@ var execSync = require('child_process').execSync,
     webdriver = require('selenium-webdriver');
 
 var by = webdriver.By,
-    until = webdriver.until;
+    until = webdriver.until,
+    Builder = require('selenium-webdriver').Builder;
 
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
 
@@ -23,8 +25,7 @@ if (!process.env.USERNAME || !process.env.PASSWORD) {
 describe('Application life cycle test', function () {
     this.timeout(0);
 
-    var chrome = require('selenium-webdriver/chrome');
-    var server, browser = new chrome.Driver();
+    var server, browser = new Builder().forBrowser('chrome').build();
 
     before(function (done) {
         var seleniumJar= require('selenium-server-standalone-jar');
@@ -90,6 +91,30 @@ describe('Application life cycle test', function () {
         });
     }
 
+    function checkCron(callback) {
+        this.timeout(60000 * 2);
+
+        fs.writeFileSync('/tmp/crontab', '* * * * * echo -n "Cron task" > /app/data/public/cron\n', 'utf8');
+        execSync('cloudron push /tmp/crontab /app/data/crontab');
+        fs.unlinkSync('/tmp/crontab');
+
+        execSync('cloudron restart');
+
+        console.log('Waiting for crontab to trigger');
+
+        setTimeout(function () {
+            superagent.get('https://' + app.fqdn + '/cron').end(function (error, result) {
+                if (error && !error.response) return callback(error); // network error
+
+                if (result.statusCode !== 200) return callback('Expecting 200, got ' + result.statusCode);
+
+                if (result.text !== 'Cron task') return callback('Unexpected text: ' + result.text);
+
+                callback();
+            });
+        }, 60 * 1000); // give it a minute to run the crontab
+    }
+
     xit('build app', function () {
         execSync('cloudron build', { cwd: path.resolve(__dirname, '..'), stdio: 'inherit' });
     });
@@ -114,6 +139,7 @@ describe('Application life cycle test', function () {
     });
     it('can get uploaded file', uploadedFileExists);
     it('can access phpmyadmin', checkPhpMyAdmin);
+    it('executes cron tasks', checkCron);
 
     it('backup app', function () {
         execSync('cloudron backup create --app ' + app.id, { cwd: path.resolve(__dirname, '..'), stdio: 'inherit' });

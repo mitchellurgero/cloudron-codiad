@@ -72,7 +72,11 @@ fi
 
 ## configure in-container Crontab
 if [ -f "/app/data/crontab" ]; then
-  crontab -u www-data /app/data/crontab
+    if ! crontab -u www-data /app/data/crontab; then
+        echo "Error importing crontab. Continuing anyway"
+    else
+        echo "Imported crontab"
+    fi
 fi
 
 chown -R www-data:www-data /app/data /run/apache2 /run/proftpd /run/app
