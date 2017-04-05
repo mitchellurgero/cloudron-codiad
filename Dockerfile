@@ -72,6 +72,9 @@ ADD proftpd.conf /app/code/proftpd.conf.template
 
 RUN rm -rf /var/log/proftpd && ln -s /run/proftpd /var/log/proftpd
 
+# configure cron
+RUN rm -rf /var/spool/cron && ln -s /run/cron /var/spool/cron
+
 # configure supervisor
 ADD supervisor/ /etc/supervisor/conf.d/
 RUN sed -e 's,^logfile=.*$,logfile=/run/supervisord.log,' -i /etc/supervisor/supervisord.conf
