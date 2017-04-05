@@ -9,6 +9,9 @@ the Apache HTTP Server, the MySQL relational database management system (RDBMS),
 
 This app also bundles [ProFTPD](http://www.proftpd.org/) which provides `sftp://` access. Use your preferred ftp client to manage all files on the server. The `public` folder contains your PHP files. You will find `php.ini` at the root directory.
 
+### Cron
+
+This app supports running one or more cronjobs. The jobs are specified using the standard crontab syntax.
 
 ### Remote Terminal
 

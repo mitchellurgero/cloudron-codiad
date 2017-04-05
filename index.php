@@ -86,11 +86,12 @@ sftp -P 2222 surfer.nebulon.info:public/
 
 <h2>Cron</h2>
 <p>
-  Just put a file called crontab to the directory /app/data and it will picked up at next app restart. It has to be in the cron syntax without username.
-  For example, the following crontab updates feeds every hour:
+  Just put a file called crontab to the directory /app/data and it will picked up at next app restart. It has to be in the cron syntax without username
+  and must end with a newline. For example, the following crontab updates feeds every hour:
 </p>
 <pre>
 0 * * * * php /app/code/update.php --feeds
+
 </pre>
 <p>
   Commands are executed as the user www-data. See <a href="https://linux.die.net/man/5/crontab">manpage</a> for a description of the file.
