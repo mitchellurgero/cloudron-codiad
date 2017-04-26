@@ -51,8 +51,8 @@ RUN echo "Listen 80" > /etc/apache2/ports.conf
 RUN a2enmod rewrite authnz_ldap
 
 # configure mod_php
-RUN crudini --set /etc/php/7.0/apache2/php.ini PHP upload_max_filesize 8M && \
-    crudini --set /etc/php/7.0/apache2/php.ini PHP post_max_size 8M && \
+RUN crudini --set /etc/php/7.0/apache2/php.ini PHP upload_max_filesize 64M && \
+    crudini --set /etc/php/7.0/apache2/php.ini PHP post_max_size 64M && \
     crudini --set /etc/php/7.0/apache2/php.ini PHP memory_limit 128M && \
     crudini --set /etc/php/7.0/apache2/php.ini Session session.save_path /run/app/sessions
 
