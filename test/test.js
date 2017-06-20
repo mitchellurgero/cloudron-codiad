@@ -197,4 +197,26 @@ describe('Application life cycle test', function () {
         execSync('cloudron uninstall --app ' + app.id, { cwd: path.resolve(__dirname, '..'), stdio: 'inherit' });
     });
 
+    // test update
+    it('can install app', function () {
+        execSync('cloudron install --new --wait --appstore-id lamp.cloudronapp --location ' + LOCATION, { cwd: path.resolve(__dirname, '..'), stdio: 'inherit' });
+        var inspect = JSON.parse(execSync('cloudron inspect'));
+        app = inspect.apps.filter(function (a) { return a.location === LOCATION; })[0];
+        expect(app).to.be.an('object');
+    });
+    it('can upload file with sftp', function () {
+        // remove from known hosts in case this test was run on other apps with the same domain already
+        execSync(util.format('sed -i \'/%s/d\' -i ~/.ssh/known_hosts', app.fqdn));
+        execSync(util.format('lftp sftp://%s:%s@%s:%s  -e "set sftp:auto-confirm yes; cd public/; put test.php; bye"', process.env.USERNAME, process.env.PASSWORD, app.fqdn, app.portBindings.SFTP_PORT));
+    });
+
+    it('can update', function () {
+        execSync('cloudron install --wait --app ' + LOCATION, { cwd: path.resolve(__dirname, '..'), stdio: 'inherit' });
+    });
+    it('can get uploaded file', uploadedFileExists);
+    it('can access phpmyadmin', checkPhpMyAdmin);
+
+    it('uninstall app', function () {
+        execSync('cloudron uninstall --app ' + app.id, { cwd: path.resolve(__dirname, '..'), stdio: 'inherit' });
+    });
 });
