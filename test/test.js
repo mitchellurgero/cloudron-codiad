@@ -98,7 +98,7 @@ describe('Application life cycle test', function () {
         execSync('cloudron push /tmp/crontab /app/data/crontab');
         fs.unlinkSync('/tmp/crontab');
 
-        execSync('cloudron restart');
+        execSync('cloudron restart --wait');
 
         console.log('Waiting for crontab to trigger');
 
