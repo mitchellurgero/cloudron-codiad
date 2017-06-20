@@ -54,7 +54,9 @@ RUN a2enmod rewrite authnz_ldap
 RUN crudini --set /etc/php/7.0/apache2/php.ini PHP upload_max_filesize 64M && \
     crudini --set /etc/php/7.0/apache2/php.ini PHP post_max_size 64M && \
     crudini --set /etc/php/7.0/apache2/php.ini PHP memory_limit 128M && \
-    crudini --set /etc/php/7.0/apache2/php.ini Session session.save_path /run/app/sessions
+    crudini --set /etc/php/7.0/apache2/php.ini Session session.save_path /run/app/sessions && \
+    crudini --set /etc/php/7.0/apache2/php.ini Session session.gc_probability 1 && \
+    crudini --set /etc/php/7.0/apache2/php.ini Session session.gc_divisor 100
 
 RUN mv /etc/php/7.0/apache2/php.ini /etc/php/7.0/apache2/php.ini.orig && ln -sf /app/data/php.ini /etc/php/7.0/apache2/php.ini
 

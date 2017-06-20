@@ -15,6 +15,9 @@ rm -f /app/data/apache2-app.conf
 
 if [ ! -f "/app/data/php.ini" ]; then
     cp /etc/php/7.0/apache2/php.ini.orig /app/data/php.ini
+else
+    crudini --set /app/data/php.ini Session session.gc_probability 1
+    crudini --set /app/data/php.ini Session session.gc_divisor 100
 fi
 
 # SFTP_PORT can be unset to disable SFTP
