@@ -29,3 +29,6 @@
 [0.6.1]
 * Increase default file upload limit to 64m
 
+[0.6.2]
+* Cleanup PHP sessions
+
