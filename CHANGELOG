@@ -31,4 +31,5 @@
 
 [0.6.2]
 * Cleanup PHP sessions
+* Update PHP to 7.0.18
 
