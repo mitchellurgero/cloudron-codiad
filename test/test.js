@@ -134,6 +134,7 @@ describe('Application life cycle test', function () {
     it('can view welcome page', welcomePage);
     it('can upload file with sftp', function () {
         // remove from known hosts in case this test was run on other apps with the same domain already
+        // if the tests fail here you want to set "HashKnownHosts no" in ~/.ssh/config
         execSync(util.format('sed -i \'/%s/d\' -i ~/.ssh/known_hosts', app.fqdn));
         execSync(util.format('lftp sftp://%s:%s@%s:%s  -e "set sftp:auto-confirm yes; cd public/; put test.php; bye"', process.env.USERNAME, process.env.PASSWORD, app.fqdn, app.portBindings.SFTP_PORT));
     });
@@ -206,6 +207,7 @@ describe('Application life cycle test', function () {
     });
     it('can upload file with sftp', function () {
         // remove from known hosts in case this test was run on other apps with the same domain already
+        // if the tests fail here you want to set "HashKnownHosts no" in ~/.ssh/config
         execSync(util.format('sed -i \'/%s/d\' -i ~/.ssh/known_hosts', app.fqdn));
         execSync(util.format('lftp sftp://%s:%s@%s:%s  -e "set sftp:auto-confirm yes; cd public/; put test.php; bye"', process.env.USERNAME, process.env.PASSWORD, app.fqdn, app.portBindings.SFTP_PORT));
     });

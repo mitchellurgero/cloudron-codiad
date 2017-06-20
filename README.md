@@ -47,3 +47,11 @@ if (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
         $_SERVER['HTTPS']='on';
 }
 ```
+
+## Tests
+
+* Put `HashKnownHosts no` in your `~/.ssh/config`
+* cd test
+* npm install
+* USERNAME=<> PASSWORD=<> mocha --bail test.js
+
