@@ -81,7 +81,7 @@ describe('Application life cycle test', function () {
                 .end(function (error, result) {
                 if (error) return callback(error);
 
-                if (result.text.indexOf('.cloudron.info / mysql | phpMyAdmin') === -1) { // in the title
+                if (result.text.indexOf(`${app.fqdn} / mysql | phpMyAdmin`) === -1) { // in the <title>
                     console.log(result.text);
                     return callback(new Error('could not detect phpmyadmin'));
                 }
