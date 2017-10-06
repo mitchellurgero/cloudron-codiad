@@ -15,27 +15,6 @@ This app supports running one or more cronjobs. The jobs are specified using the
 
 ### Remote Terminal
 
-Use `cloudron exec` for a remote shell connection into the app to adjust configuration files like `php.ini`.
-See [here](https://cloudron.io/references/cli.html) for how to get the `cloudron` command line tool.
+Use the [web terminal](https://cloudron.io/documentation/apps/#web-terminal) for a remote shell connection into the
+app to adjust configuration files like `php.ini`.
 
-
-### Execution Environment
-
-If you want to run for example a custom WordPress within this app, please note that the code will run behind a nginx proxy.
-Apps like WordPress require you to let the app know about that fact.
-For WordPress you would need to put this code into `wp-config.php`:
-
-```
-/*
- http://cmanios.wordpress.com/2014/04/12/nginx-https-reverse-proxy-to-wordpress-with-apache-http-and-different-port/
- http://wordpress.org/support/topic/compatibility-with-wordpress-behind-a-reverse-proxy
- https://wordpress.org/support/topic/wp_home-and-wp_siteurl
- */
-// If WordPress is behind reverse proxy which proxies https to http
-if (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
-    $_SERVER['HTTP_HOST'] = $_SERVER['HTTP_X_FORWARDED_HOST'];
-
-    if ($_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https')
-        $_SERVER['HTTPS']='on';
-}
-```
