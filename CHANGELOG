@@ -33,3 +33,7 @@
 * Cleanup PHP sessions
 * Update PHP to 7.0.18
 
+[1.0.0]
+* Update PHP to 7.0.22
+* Fix issue where cron will endlessly try to send emails
+
