@@ -177,9 +177,10 @@ describe('Application life cycle test', function () {
             done(new Error('Connected'));
         });
 
-        client.on('timeout', function () { done(); }); // the packet just got dropped (good)
+        client.on('timeout', function () { client.destroy(); done(); }); // the packet just got dropped (good)
 
         client.on('error', function (error) {
+            client.destroy();
             done(new Error('Should have got timeout but got error:' + error.message));
         });
     });
