@@ -76,6 +76,8 @@ RUN rm -rf /var/log/proftpd && ln -s /run/proftpd /var/log/proftpd
 
 # configure cron
 RUN rm -rf /var/spool/cron && ln -s /run/cron /var/spool/cron
+# clear out the crontab
+RUN rm -f /etc/cron.d/* /etc/cron.daily/* /etc/cron.hourly/* /etc/cron.monthly/* /etc/cron.weekly/* && truncate -s0 /etc/crontab
 
 # configure supervisor
 ADD supervisor/ /etc/supervisor/conf.d/
