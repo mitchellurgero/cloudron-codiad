@@ -86,6 +86,9 @@ RUN sed -e 's,^logfile=.*$,logfile=/run/supervisord.log,' -i /etc/supervisor/sup
 # add code
 COPY start.sh index.php /app/code/
 
+# forgotten in the base image
+RUN chmod +x /usr/local/bin/composer
+
 # make cloudron exec sane
 WORKDIR /app/data
 
