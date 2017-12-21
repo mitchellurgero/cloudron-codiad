@@ -37,3 +37,7 @@
 * Update PHP to 7.0.22
 * Fix issue where cron will endlessly try to send emails
 
+[1.1.0]
+* Remove unused oauth addon
+* Add documentationUrl
+

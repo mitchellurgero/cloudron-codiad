@@ -4,7 +4,7 @@
   "author": "Cloudron developers",
   "description": "file://DESCRIPTION.md",
   "tagline": "An empty LAMP stack (PHP 7)",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "healthCheckPath": "/",
   "httpPort": 80,
   "manifestVersion": 1,
@@ -28,6 +28,6 @@
   "tags": [ "apache", "php", "mysql" ],
   "mediaLinks": [ "https://raw.githubusercontent.com/cloudron-io/lamp-app/master/medialinks/medialink_0.jpg" ],
   "changelog": "file://CHANGELOG",
-  "minBoxVersion": "1.8.1",
+  "minBoxVersion": "1.9.0",
   "documentationUrl": "https://cloudron.io/documentation/apps/lamp/"
 }
