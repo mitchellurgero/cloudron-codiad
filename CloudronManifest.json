@@ -16,8 +16,7 @@
     "localstorage": {},
     "sendmail": {},
     "redis": {},
-    "ldap": {},
-    "oauth": {}
+    "ldap": {}
   },
   "tcpPorts": {
     "SFTP_PORT": {

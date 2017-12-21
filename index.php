@@ -115,7 +115,6 @@ cloudron logs -f
   <li><a href="https://cloudron.io/references/addons.html#sendmail" target="_blank">sendmail</a></li>
   <li><a href="https://cloudron.io/references/addons.html#redis" target="_blank">redis</a></li>
   <li><a href="https://cloudron.io/references/addons.html#ldap" target="_blank">ldap</a></li>
-  <li><a href="https://cloudron.io/references/addons.html#oauth" target="_blank">oauth</a></li>
 </ul>
 <p>Read more about Cloudron addons and how to use them <a href="https://cloudron.io/references/addons.html" target="_blank">here</a>.</p>
 
