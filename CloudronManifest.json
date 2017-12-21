@@ -27,5 +27,7 @@
   },
   "tags": [ "apache", "php", "mysql" ],
   "mediaLinks": [ "https://raw.githubusercontent.com/cloudron-io/lamp-app/master/medialinks/medialink_0.jpg" ],
-  "changelog": "file://CHANGELOG"
+  "changelog": "file://CHANGELOG",
+  "minBoxVersion": "1.8.1",
+  "documentationUrl": "https://cloudron.io/documentation/apps/lamp/"
 }
