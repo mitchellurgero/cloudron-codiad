@@ -45,3 +45,6 @@
 * Remove unused oauth addon
 * Add documentationUrl
 
+[1.1.2]
+* Fix addon urls
+
