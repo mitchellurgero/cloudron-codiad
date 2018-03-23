@@ -76,7 +76,7 @@ fi
 ## configure in-container Crontab
 if [ -f "/app/data/crontab" ]; then
     # http://www.gsp.com/cgi-bin/man.cgi?section=5&topic=crontab
-    if ! (cat /app/data/crontab; echo -e '\nMAILTO=""') | crontab -u www-data -; then
+    if ! (env; cat /app/data/crontab; echo -e '\nMAILTO=""') | crontab -u www-data -; then
         echo "Error importing crontab. Continuing anyway"
     else
         echo "Imported crontab"

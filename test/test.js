@@ -94,7 +94,7 @@ describe('Application life cycle test', function () {
     function checkCron(callback) {
         this.timeout(60000 * 2);
 
-        fs.writeFileSync('/tmp/crontab', '* * * * * echo -n "Cron task" > /app/data/public/cron\n', 'utf8');
+        fs.writeFileSync('/tmp/crontab', '* * * * * echo -n "$MYSQL_HOST" > /app/data/public/cron\n', 'utf8');
         execSync('cloudron push /tmp/crontab /app/data/crontab');
         fs.unlinkSync('/tmp/crontab');
 
@@ -108,7 +108,7 @@ describe('Application life cycle test', function () {
 
                 if (result.statusCode !== 200) return callback('Expecting 200, got ' + result.statusCode);
 
-                if (result.text !== 'Cron task') return callback('Unexpected text: ' + result.text);
+                if (result.text !== 'mysql') return callback('Unexpected text: ' + result.text);
 
                 callback();
             });
