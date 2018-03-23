@@ -48,7 +48,7 @@ RUN sed -e "s,MaxSpareServers[^:].*,MaxSpareServers 5," -i /etc/apache2/mods-ava
 
 RUN a2disconf other-vhosts-access-log
 RUN echo "Listen 80" > /etc/apache2/ports.conf
-RUN a2enmod rewrite authnz_ldap
+RUN a2enmod rewrite authnz_ldap headers
 
 # configure mod_php
 RUN crudini --set /etc/php/7.0/apache2/php.ini PHP upload_max_filesize 64M && \
