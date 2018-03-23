@@ -52,3 +52,6 @@
 * Update PHP 7.0.28-0ubuntu0.16.04.1
 * Fix bug where env vars were not set in cron jobs
 
+[1.2.1]
+* Enable mod_headers
+
