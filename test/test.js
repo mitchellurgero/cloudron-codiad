@@ -2,6 +2,8 @@
 
 'use strict';
 
+require('chromedriver');
+
 var execSync = require('child_process').execSync,
     expect = require('expect.js'),
     fs = require('fs'),
@@ -58,7 +60,7 @@ describe('Application life cycle test', function () {
         browser.get('https://' + app.fqdn);
 
         waitForElement(by.xpath('//*[text()="Cloudron LAMP App"]'), function () {
-            waitForElement(by.xpath('//*[text()="PHP Version 7.0.22-0ubuntu0.16.04.1"]'), callback);
+            waitForElement(by.xpath('//*[text()="PHP Version 7.0.28-0ubuntu0.16.04.1"]'), callback);
         });
     }
 
