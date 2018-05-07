@@ -41,12 +41,14 @@ RUN apt-get update && apt-get install -y php libapache2-mod-php crudini \
     cron \
     && rm -rf /var/cache/apt /var/lib/apt/lists /etc/ssh_host_*
 
+
 # configure apache
 RUN rm /etc/apache2/sites-enabled/*
 RUN sed -e 's,^ErrorLog.*,ErrorLog "|/bin/cat",' -i /etc/apache2/apache2.conf
-RUN sed -e "s,MaxSpareServers[^:].*,MaxSpareServers 5," -i /etc/apache2/mods-available/mpm_prefork.conf
+COPY apache/mpm_prefork.conf /etc/apache2/mods-available/mpm_prefork.conf
 
 RUN a2disconf other-vhosts-access-log
+ADD apache/lamp.conf /etc/apache2/sites-enabled/lamp.conf
 RUN echo "Listen 80" > /etc/apache2/ports.conf
 RUN a2enmod rewrite authnz_ldap headers
 
