@@ -10,9 +10,6 @@ for f in /app/data/public/index.*; do
     break
 done
 
-# cleanup for old apache2-app.conf
-rm -f /app/data/apache2-app.conf
-
 if [ ! -f "/app/data/php.ini" ]; then
     cp /etc/php/7.0/apache2/php.ini.orig /app/data/php.ini
 else
