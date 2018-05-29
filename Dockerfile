@@ -39,8 +39,9 @@ RUN apt-get update && apt-get install -y php libapache2-mod-php crudini \
     php-zip \
     proftpd proftpd-mod-ldap \
     cron \
+    apache2-dev \
+    build-essential \
     && rm -rf /var/cache/apt /var/lib/apt/lists /etc/ssh_host_*
-
 
 # configure apache
 RUN rm /etc/apache2/sites-enabled/*
@@ -62,6 +63,18 @@ RUN crudini --set /etc/php/7.0/apache2/php.ini PHP upload_max_filesize 64M && \
     crudini --set /etc/php/7.0/apache2/php.ini Session session.gc_divisor 100
 
 RUN mv /etc/php/7.0/apache2/php.ini /etc/php/7.0/apache2/php.ini.orig && ln -sf /app/data/php.ini /etc/php/7.0/apache2/php.ini
+
+# install RPAF module to override HTTPS, SERVER_PORT, HTTP_HOST based on reverse proxy headers
+# https://www.digitalocean.com/community/tutorials/how-to-configure-nginx-as-a-web-server-and-reverse-proxy-for-apache-on-one-ubuntu-16-04-server
+RUN mkdir /app/code/rpaf && \
+    curl -L https://github.com/gnif/mod_rpaf/tarball/669c3d2ba72228134ae5832c8cf908d11ecdd770 | tar -C /app/code/rpaf -xz --strip-components 1 -f -  && \
+    cd /app/code/rpaf && \
+    make && \
+    make install && \
+    rm -rf /app/code/rpaf
+
+# configure rpaf
+RUN echo "LoadModule rpaf_module /usr/lib/apache2/modules/mod_rpaf.so" > /etc/apache2/mods-available/rpaf.load && a2enmod rpaf
 
 # phpMyAdmin
 RUN mkdir -p /app/code/phpmyadmin && \
