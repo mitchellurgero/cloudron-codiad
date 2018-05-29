@@ -99,24 +99,16 @@ sftp -P 2222 surfer.nebulon.info:public/
 
 <br/>
 
-<h2>Logs</h2>
-<p>Apache logs can be viewed using the <a href="https://cloudron.io/references/cli.html" target="_blank">cloudron commandline tool</a>.</p>
-<pre>
-cloudron logs -f
-</pre>
-
-<br/>
-
 <h2>Addons</h2>
 <p>The app is configured to have access to the following Cloudron addons:</p>
 <ul>
-  <li><a href="https://cloudron.io/documentation/developer/addons/#mysql" target="_blank">mysql</a></li>
-  <li><a href="https://cloudron.io/documentation/developer/addons/#localstorage" target="_blank">localstorage</a></li>
-  <li><a href="https://cloudron.io/documentation/developer/addons/#sendmail" target="_blank">sendmail</a></li>
-  <li><a href="https://cloudron.io/documentation/developer/addons/#redis" target="_blank">redis</a></li>
-  <li><a href="https://cloudron.io/documentation/developer/addons/#ldap" target="_blank">ldap</a></li>
+  <li><a href="https://cloudron.io/developer/addons/#mysql" target="_blank">mysql</a></li>
+  <li><a href="https://cloudron.io/developer/addons/#localstorage" target="_blank">localstorage</a></li>
+  <li><a href="https://cloudron.io/developer/addons/#sendmail" target="_blank">sendmail</a></li>
+  <li><a href="https://cloudron.io/developer/addons/#redis" target="_blank">redis</a></li>
+  <li><a href="https://cloudron.io/developer/addons/#ldap" target="_blank">ldap</a></li>
 </ul>
-<p>Read more about Cloudron addons and how to use them <a href="https://cloudron.io/documentation/developer/addons/" target="_blank">here</a>.</p>
+<p>Read more about Cloudron addons and how to use them <a href="https://cloudron.io/developer/addons/" target="_blank">here</a>.</p>
 
 <br/>
 
