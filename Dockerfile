@@ -62,10 +62,6 @@ RUN crudini --set /etc/php/7.0/apache2/php.ini PHP upload_max_filesize 64M && \
 
 RUN mv /etc/php/7.0/apache2/php.ini /etc/php/7.0/apache2/php.ini.orig && ln -sf /app/data/php.ini /etc/php/7.0/apache2/php.ini
 
-# configure site
-COPY apache2-app.conf /app/code/apache2-app.conf
-RUN ln -s /run/apache2/app.conf /etc/apache2/sites-enabled/app.conf
-
 # phpMyAdmin
 RUN mkdir -p /app/code/phpmyadmin && \
     curl -L https://files.phpmyadmin.net/phpMyAdmin/4.7.0/phpMyAdmin-4.7.0-english.tar.gz | tar zxvf - -C /app/code/phpmyadmin --strip-components=1
