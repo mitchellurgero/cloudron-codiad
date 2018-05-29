@@ -57,12 +57,12 @@ chmod 0644 /app/data/sftpd/*.pub
 ## Generate apache config. PMA is disabled based on SFTP config
 if [[ "${disable_sftp}" == "true" ]]; then
     echo "PMA disabled"
-    sed '/.*PMA BEGIN/,/.*PMA END/d' /app/code/apache2-app.conf > /run/apache2/app.conf
+    sed '/.*PMA BEGIN/,/.*PMA END/d' /app/code/lamp.conf > /run/apache2/lamp.conf
 else
     sed -e "s@AuthLDAPURL .*@AuthLDAPURL ${LDAP_URL}/${LDAP_USERS_BASE_DN}?username??(objectclass=user)@" \
         -e "s@AuthLDAPBindDN .*@AuthLDAPBindDN ${LDAP_BIND_DN}@" \
         -e "s@AuthLDAPBindPassword .*@AuthLDAPBindPassword ${LDAP_BIND_PASSWORD}@" \
-        /app/code/apache2-app.conf > /run/apache2/app.conf
+        /app/code/lamp.conf > /run/apache2/lamp.conf
 fi
 
 ## hook for custom start script in /app/data/run.sh
