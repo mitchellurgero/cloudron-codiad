@@ -64,7 +64,7 @@ RUN mv /etc/php/7.0/apache2/php.ini /etc/php/7.0/apache2/php.ini.orig && ln -sf 
 
 # phpMyAdmin
 RUN mkdir -p /app/code/phpmyadmin && \
-    curl -L https://files.phpmyadmin.net/phpMyAdmin/4.7.0/phpMyAdmin-4.7.0-english.tar.gz | tar zxvf - -C /app/code/phpmyadmin --strip-components=1
+    curl -L https://files.phpmyadmin.net/phpMyAdmin/4.8.1/phpMyAdmin-4.8.1-english.tar.gz | tar zxvf - -C /app/code/phpmyadmin --strip-components=1
 COPY phpmyadmin-config.inc.php /app/code/phpmyadmin/config.inc.php
 
 # configure proftpd
