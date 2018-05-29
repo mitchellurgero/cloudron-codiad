@@ -60,7 +60,7 @@ describe('Application life cycle test', function () {
         browser.get('https://' + app.fqdn);
 
         waitForElement(by.xpath('//*[text()="Cloudron LAMP App"]'), function () {
-            waitForElement(by.xpath('//*[text()="PHP Version 7.0.28-0ubuntu0.16.04.1"]'), callback);
+            waitForElement(by.xpath('//*[text()="PHP Version 7.0.30-0ubuntu0.16.04.1"]'), callback);
         });
     }
 
@@ -136,7 +136,11 @@ describe('Application life cycle test', function () {
     it('can view welcome page', welcomePage);
     it('can upload file with sftp', function () {
         // remove from known hosts in case this test was run on other apps with the same domain already
-        // if the tests fail here you want to set "HashKnownHosts no" in ~/.ssh/config
+        // if the tests fail here you want below in ~/.ssh/config
+        // Host test.cloudron.xyz
+        //     StrictHostKeyChecking no
+        //     HashKnownHosts no
+        console.log('If this test fails, see the comment above this log');
         execSync(util.format('sed -i \'/%s/d\' -i ~/.ssh/known_hosts', app.fqdn));
         execSync(util.format('lftp sftp://%s:%s@%s:%s  -e "set sftp:auto-confirm yes; cd public/; put test.php; bye"', process.env.USERNAME, process.env.PASSWORD, app.fqdn, app.portBindings.SFTP_PORT));
     });
