@@ -55,3 +55,7 @@
 [1.2.1]
 * Enable mod_headers
 
+[1.3.0]
+* Update PHP 7.0.30-0ubuntu0.16.04.1
+* Update phpMyAdmin to 4.8.1
+ 
