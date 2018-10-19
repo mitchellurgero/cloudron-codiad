@@ -62,3 +62,8 @@
 [1.4.0]
 * Set values of SERVER_PORT to 443 for compat with many existing PHP apps
 * Set values of HTTPS to On for compat with many existing PHP apps
+
+[1.5.0]
+* Use latest base image
+* Update PHP 7.2.10-0ubuntu0.18.04.1
+
