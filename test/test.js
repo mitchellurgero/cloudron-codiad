@@ -48,27 +48,29 @@ describe('Application life cycle test', function () {
     var TEST_TIMEOUT = 50000;
     var app;
 
-    function waitForElement(elem, callback) {
-         browser.wait(until.elementLocated(elem), TEST_TIMEOUT).then(function () {
-            browser.wait(until.elementIsVisible(browser.findElement(elem)), TEST_TIMEOUT).then(function () {
-                callback();
-            });
+    function waitForElement(elem) {
+        return browser.wait(until.elementLocated(elem), TEST_TIMEOUT).then(function () {
+            return browser.wait(until.elementIsVisible(browser.findElement(elem)), TEST_TIMEOUT);
         });
     }
 
     function welcomePage(callback) {
-        browser.get('https://' + app.fqdn);
-
-        waitForElement(by.xpath('//*[text()="Cloudron LAMP App"]'), function () {
-            waitForElement(by.xpath('//*[text()="PHP Version 7.0.30-0ubuntu0.16.04.1"]'), callback);
+        browser.get('https://' + app.fqdn).then(function () {
+            return waitForElement(by.xpath('//*[text()="Cloudron LAMP App"]'));
+        }).then(function () {
+            return waitForElement(by.xpath('//h1[contains(text(), "7.2.10-0ubuntu0.18.04.1")]'));
+        }).then(function () {
+            callback();
         });
     }
 
     function uploadedFileExists(callback) {
-        browser.get('https://' + app.fqdn + '/test.php');
-
-        waitForElement(by.xpath('//*[text()="this works"]'), function () {
-            waitForElement(by.xpath('//*[text()="' + app.fqdn + '"]'), callback);
+        browser.get('https://' + app.fqdn + '/test.php').then(function () {
+            return waitForElement(by.xpath('//*[text()="this works"]'));
+        }).then(function () {
+            return waitForElement(by.xpath('//*[text()="' + app.fqdn + '"]'));
+        }).then(function () {
+            callback();
         });
     }
 
