@@ -1,5 +1,4 @@
-FROM cloudron/base:0.10.0
-MAINTAINER Johannes Zellner <johannes@cloudron.io>
+FROM cloudron/base:1.0.0@sha256:147a648a068a2e746644746bbfb42eb7a50d682437cead3c67c933c546357617
 
 RUN mkdir -p /app/code /run/app/sessions
 WORKDIR /app/code
@@ -19,10 +18,8 @@ RUN apt-get update && apt-get install -y php libapache2-mod-php crudini \
     php-json \
     php-log \
     php-mbstring \
-    php-mcrypt \
     php-mime-type \
     php-mysql \
-    php-pdfparser \
     php-readline \
     php-soap \
     php-sql-formatter \
@@ -33,7 +30,6 @@ RUN apt-get update && apt-get install -y php libapache2-mod-php crudini \
     php-uuid \
     php-validate \
     php-xml \
-    php-xml-parser \
     php-xml-svg \
     php-yac \
     php-zip \
@@ -55,14 +51,14 @@ RUN echo "Listen 80" > /etc/apache2/ports.conf
 RUN a2enmod rewrite authnz_ldap headers
 
 # configure mod_php
-RUN crudini --set /etc/php/7.0/apache2/php.ini PHP upload_max_filesize 64M && \
-    crudini --set /etc/php/7.0/apache2/php.ini PHP post_max_size 64M && \
-    crudini --set /etc/php/7.0/apache2/php.ini PHP memory_limit 128M && \
-    crudini --set /etc/php/7.0/apache2/php.ini Session session.save_path /run/app/sessions && \
-    crudini --set /etc/php/7.0/apache2/php.ini Session session.gc_probability 1 && \
-    crudini --set /etc/php/7.0/apache2/php.ini Session session.gc_divisor 100
+RUN crudini --set /etc/php/7.2/apache2/php.ini PHP upload_max_filesize 64M && \
+    crudini --set /etc/php/7.2/apache2/php.ini PHP post_max_size 64M && \
+    crudini --set /etc/php/7.2/apache2/php.ini PHP memory_limit 128M && \
+    crudini --set /etc/php/7.2/apache2/php.ini Session session.save_path /run/app/sessions && \
+    crudini --set /etc/php/7.2/apache2/php.ini Session session.gc_probability 1 && \
+    crudini --set /etc/php/7.2/apache2/php.ini Session session.gc_divisor 100
 
-RUN mv /etc/php/7.0/apache2/php.ini /etc/php/7.0/apache2/php.ini.orig && ln -sf /app/data/php.ini /etc/php/7.0/apache2/php.ini
+RUN mv /etc/php/7.2/apache2/php.ini /etc/php/7.2/apache2/php.ini.orig && ln -sf /app/data/php.ini /etc/php/7.2/apache2/php.ini
 
 # install RPAF module to override HTTPS, SERVER_PORT, HTTP_HOST based on reverse proxy headers
 # https://www.digitalocean.com/community/tutorials/how-to-configure-nginx-as-a-web-server-and-reverse-proxy-for-apache-on-one-ubuntu-16-04-server
@@ -97,9 +93,6 @@ RUN sed -e 's,^logfile=.*$,logfile=/run/supervisord.log,' -i /etc/supervisor/sup
 
 # add code
 COPY start.sh index.php /app/code/
-
-# forgotten in the base image
-RUN chmod +x /usr/local/bin/composer
 
 # make cloudron exec sane
 WORKDIR /app/data
