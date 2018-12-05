@@ -74,7 +74,7 @@ RUN echo "LoadModule rpaf_module /usr/lib/apache2/modules/mod_rpaf.so" > /etc/ap
 
 # phpMyAdmin
 RUN mkdir -p /app/code/phpmyadmin && \
-    curl -L https://files.phpmyadmin.net/phpMyAdmin/4.8.1/phpMyAdmin-4.8.1-english.tar.gz | tar zxvf - -C /app/code/phpmyadmin --strip-components=1
+    curl -L https://files.phpmyadmin.net/phpMyAdmin/4.8.3/phpMyAdmin-4.8.3-all-languages.tar.gz | tar zxvf - -C /app/code/phpmyadmin --strip-components=1
 COPY phpmyadmin-config.inc.php /app/code/phpmyadmin/config.inc.php
 
 # configure proftpd
