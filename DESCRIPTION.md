@@ -1,4 +1,4 @@
-This app only supports <upstream>PHP 7</upstream>
+This app only supports <upstream>PHP 7.2</upstream>
 
 ## Cloudron LAMP Stack
 
