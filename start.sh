@@ -70,14 +70,14 @@ if [ -f "/app/data/run.sh" ]; then
     /bin/bash /app/data/run.sh
 fi
 
+[[ ! -f /app/data/crontab ]] && cp /app/code/crontab.template /app/data/crontab
+
 ## configure in-container Crontab
-if [ -f "/app/data/crontab" ]; then
-    # http://www.gsp.com/cgi-bin/man.cgi?section=5&topic=crontab
-    if ! (env; cat /app/data/crontab; echo -e '\nMAILTO=""') | crontab -u www-data -; then
-        echo "Error importing crontab. Continuing anyway"
-    else
-        echo "Imported crontab"
-    fi
+# http://www.gsp.com/cgi-bin/man.cgi?section=5&topic=crontab
+if ! (env; cat /app/data/crontab; echo -e '\nMAILTO=""') | crontab -u www-data -; then
+    echo "Error importing crontab. Continuing anyway"
+else
+    echo "Imported crontab"
 fi
 
 chown -R www-data:www-data /app/data /run/apache2 /run/proftpd /run/app

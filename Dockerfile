@@ -100,7 +100,7 @@ ADD supervisor/ /etc/supervisor/conf.d/
 RUN sed -e 's,^logfile=.*$,logfile=/run/supervisord.log,' -i /etc/supervisor/supervisord.conf
 
 # add code
-COPY start.sh index.php /app/code/
+COPY start.sh index.php crontab.template /app/code/
 
 # make cloudron exec sane
 WORKDIR /app/data
