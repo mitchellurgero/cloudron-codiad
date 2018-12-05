@@ -74,6 +74,15 @@ describe('Application life cycle test', function () {
         });
     }
 
+    function checkIonCube(callback) {
+        browser.get('https://' + app.fqdn).then(function () {
+            return waitForElement(by.xpath('//td[contains(text(), "ionCube Loader")]'));
+            // return waitForElement(by.xpath('//*[contains(text(), "Intrusion&nbsp;Protection&nsbp;from&nbsp;ioncube24.com")]'));
+        }).then(function () {
+            callback();
+        });
+    }
+
     function checkPhpMyAdmin(callback) {
         superagent.get('https://' + app.fqdn + '/phpmyadmin').end(function (error, result) {
             if (error && !error.response) return callback(error); // network error
@@ -136,13 +145,14 @@ describe('Application life cycle test', function () {
     });
 
     it('can view welcome page', welcomePage);
+    it('can access ioncube', checkIonCube);
     it('can upload file with sftp', function () {
         // remove from known hosts in case this test was run on other apps with the same domain already
         // if the tests fail here you want below in ~/.ssh/config
         // Host test.cloudron.xyz
         //     StrictHostKeyChecking no
         //     HashKnownHosts no
-        console.log('If this test fails, see the comment above this log');
+        console.log('If this test fails, see the comment above this log message');
         execSync(util.format('sed -i \'/%s/d\' -i ~/.ssh/known_hosts', app.fqdn));
         execSync(util.format('lftp sftp://%s:%s@%s:%s  -e "set sftp:auto-confirm yes; cd public/; put test.php; bye"', process.env.USERNAME, process.env.PASSWORD, app.fqdn, app.portBindings.SFTP_PORT));
     });
@@ -170,6 +180,7 @@ describe('Application life cycle test', function () {
 
     it('can get uploaded file', uploadedFileExists);
     it('can access phpmyadmin', checkPhpMyAdmin);
+    it('can access ioncube', checkIonCube);
 
     // disable SFTP
     it('can disable sftp', function () {
@@ -226,6 +237,7 @@ describe('Application life cycle test', function () {
     });
     it('can get uploaded file', uploadedFileExists);
     it('can access phpmyadmin', checkPhpMyAdmin);
+    it('can access ioncube', checkIonCube);
 
     it('uninstall app', function () {
         execSync('cloudron uninstall --app ' + app.id, { cwd: path.resolve(__dirname, '..'), stdio: 'inherit' });

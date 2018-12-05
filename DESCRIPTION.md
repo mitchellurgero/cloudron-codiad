@@ -13,6 +13,11 @@ This app also bundles [ProFTPD](http://www.proftpd.org/) which provides `sftp://
 
 This app supports running one or more cronjobs. The jobs are specified using the standard crontab syntax.
 
+## ionCube
+
+ionCube is a PHP module extension that loads encrypted PHP files and speeds up webpages. ionCube is pre-installed
+and enabled by default.
+
 ### Remote Terminal
 
 Use the [web terminal](https://cloudron.io/documentation/apps/#web-terminal) for a remote shell connection into the
