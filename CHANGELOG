@@ -67,3 +67,8 @@
 * Use latest base image
 * Update PHP 7.2.10-0ubuntu0.18.04.1
 
+[1.6.0]
+* Pre-install and enable ioncube
+* Add crontab template file
+* Update phpMyAdmin to 4.8.3
+
