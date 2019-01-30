@@ -48,7 +48,7 @@ RUN a2disconf other-vhosts-access-log
 ADD apache/lamp.conf /app/code/lamp.conf
 RUN ln -s /run/apache2/lamp.conf /etc/apache2/sites-enabled/lamp.conf
 RUN echo "Listen 80" > /etc/apache2/ports.conf
-RUN a2enmod rewrite authnz_ldap headers rewrite expires headers cache
+RUN a2enmod rewrite authnz_ldap headers rewrite expires cache
 
 # configure mod_php
 RUN crudini --set /etc/php/7.2/apache2/php.ini PHP upload_max_filesize 64M && \
