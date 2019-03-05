@@ -102,6 +102,9 @@ RUN sed -e 's,^logfile=.*$,logfile=/run/supervisord.log,' -i /etc/supervisor/sup
 # add code
 COPY start.sh index.php crontab.template /app/code/
 
+# lock www-data but allow su - www-data to work
+RUN passwd -l www-data && usermod --shell /bin/bash www-data
+
 # make cloudron exec sane
 WORKDIR /app/data
 
