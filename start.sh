@@ -2,7 +2,7 @@
 
 set -eu
 
-mkdir -p /app/data/public /run/apache2 /run/proftpd /run/app /run/cron
+mkdir -p /app/data/public /run/apache2 /run/proftpd /run/cron /run/app/sessions
 
 # check if any index file exists
 for f in /app/data/public/index.*; do

@@ -75,3 +75,7 @@
 [1.6.1]
 * Enble rewrite, expires, cache apache modules
 
+[1.6.2]
+* Update PHP to 7.2.15
+* Make composer usable by making www-data a normal user
+
