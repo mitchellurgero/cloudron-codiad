@@ -1,9 +1,8 @@
 This app only supports <upstream>PHP 7.2</upstream>
 
-## Cloudron LAMP Stack
+## Cloudron LAP Stack with Codiad
 
-LAMP is an archetypal model of web service stacks, named as an acronym of the names of its original four open-source components: the Linux operating system,
-the Apache HTTP Server, the MySQL relational database management system (RDBMS), and the PHP programming language.
+(MySQL / MariaDB not installed.)
 
 ### SFTP
 

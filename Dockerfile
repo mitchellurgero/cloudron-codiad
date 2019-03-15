@@ -1,4 +1,4 @@
-FROM cloudron/base:1.0.0@sha256:147a648a068a2e746644746bbfb42eb7a50d682437cead3c67c933c546357617
+FROM cloudron/base:1.0.0
 
 RUN mkdir -p /app/code
 WORKDIR /app/code
@@ -37,6 +37,7 @@ RUN apt-get update && apt-get install -y php libapache2-mod-php crudini \
     cron \
     apache2-dev \
     build-essential \
+    expect \
     && rm -rf /var/cache/apt /var/lib/apt/lists /etc/ssh_host_*
 
 # configure apache
@@ -72,11 +73,6 @@ RUN mkdir /app/code/rpaf && \
 # configure rpaf
 RUN echo "LoadModule rpaf_module /usr/lib/apache2/modules/mod_rpaf.so" > /etc/apache2/mods-available/rpaf.load && a2enmod rpaf
 
-# phpMyAdmin
-RUN mkdir -p /app/code/phpmyadmin && \
-    curl -L https://files.phpmyadmin.net/phpMyAdmin/4.8.3/phpMyAdmin-4.8.3-all-languages.tar.gz | tar zxvf - -C /app/code/phpmyadmin --strip-components=1
-COPY phpmyadmin-config.inc.php /app/code/phpmyadmin/config.inc.php
-
 # configure proftpd
 ADD proftpd.conf /app/code/proftpd.conf.template
 
@@ -107,5 +103,6 @@ RUN passwd -l www-data && usermod --shell /bin/bash --home /app/data www-data
 
 # make cloudron exec sane
 WORKDIR /app/data
+
 
 CMD [ "/app/code/start.sh" ]

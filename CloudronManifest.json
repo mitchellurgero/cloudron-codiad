@@ -1,21 +1,19 @@
 {
-  "id": "lamp.cloudronapp",
-  "title": "LAMP",
-  "author": "Cloudron developers",
+  "id": "org.urgero.codiad",
+  "title": "Codiad",
+  "author": "Mitchell Urgero <info@urgero.org>",
   "description": "file://DESCRIPTION.md",
-  "tagline": "An empty LAMP stack (PHP 7)",
-  "version": "1.6.2",
+  "tagline": "Codiad running in a slimmed down version of lamp.cloudron(PHP 7)",
+  "version": "0.0.1",
   "healthCheckPath": "/",
   "httpPort": 80,
   "manifestVersion": 1,
-  "website": "https://cloudron.io/",
-  "contactEmail": "apps@cloudron.io",
-  "icon": "logo.png",
+  "website": "https://github.com/mitchellurgero/cloudron-codiad/",
+  "contactEmail": "info@urgero.org",
+  "icon": "logo.jpg",
   "addons": {
-    "mysql": {},
     "localstorage": {},
     "sendmail": {},
-    "redis": {},
     "ldap": {}
   },
   "tcpPorts": {
@@ -26,8 +24,7 @@
     }
   },
   "tags": [ "apache", "php", "mysql", "hosting", "lamp", "stacks", "development" ],
-  "mediaLinks": [ "https://raw.githubusercontent.com/cloudron-io/lamp-app/master/medialinks/medialink_0.jpg" ],
   "changelog": "file://CHANGELOG",
   "minBoxVersion": "1.8.5",
-  "documentationUrl": "https://cloudron.io/documentation/apps/lamp/"
+  "documentationUrl": "https://github.com/mitchellurgero/cloudron-codiad"
 }

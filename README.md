@@ -1,57 +1,77 @@
-# LAMP Stack Cloudron App
+## cloudron-codiad
 
-This repository contains the Cloudron app package source for a plain LAMP stack.
+----------
 
-## Installation
+Built from https://git.cloudron.io/cloudron/lamp-app
 
-[![Install](https://cloudron.io/img/button.svg)](https://cloudron.io/button.html?app=org.wordpress.cloudronapp)
+## Special Information
 
-or using the [Cloudron command line tooling](https://cloudron.io/references/cli.html)
+- Due to either my limited knowledge of Cloudron, or a limitation of Cloudron itself, I had to generate a password for the app on first app installation.
+  This means the `--password` flag is set in CLI. It is plaintext, but better than the random password that is generated on each boot.
+  That said, you can change this first time generated password in `/app/data/temp` and then clicking "Configure" in the apps configuration screen
+
+- **I am not able to test the security of this app, however, given a strong enough password, things should be fine. In either case, I would NOT INSTALL ON PRODUCTION SYSTEMS**
+
+- I did not make VSCode or code-server. I just built this *very* *alpha* build of cloudron-vscode. Please, use at your own risk.
+
+## Currently Installed Packages / Supported Languages
+
+- Follows Cloudron:base:1.0.0 (See: [Cloudron Baseimage Packages](https://cloudron.io/developer/baseimage/#packages)
+- Built off Cloudron's LAMP App
+
+**Supported Langauges**
+
+(If I missed one, let me know by opening an issue or Pull Request.)
+
+- JavaScript
+- PHP5/7 (PHP 7.0.3 installed, which is backwards compatible with most PHP5 functions and scripts)
+- HTML
+
+## Installing on Cloudron
+- Make sure you have [Cloudron CLI installed](https://cloudron.io/developer/cli/) on a Linux computer that is NOT your cloudron server. (See docs for details)
+- Then do the following:
 
 ```
-cloudron install --appstore-id lamp.cloudronapp
+cloudron login
+cloudron install --image mitchellurgero/org.urgero.codiad:latest # Might need to change to whatever the latest build is.
 ```
 
-## Building
+## Building from source
 
-The app package can be built using the [Cloudron command line tooling](https://cloudron.io/references/cli.html).
+- **Building and using Build Service to deploy**
 
-```
-cd lamp-app
-
+```bash
+git clone https://github.com/mitchellurgero/cloudron-codiad
+cd cloudron-codiad
+cloudron login
 cloudron build
+# Optional
 cloudron install
 ```
 
-## Usage
 
-Use `cloudron push` to copy files into `/app/data/public/` and `cloudron exec` to get a remote terminal.
+- **Building and using local docker to deploy**
 
-See https://cloudron.io/references/cli.html for how to get the `cloudron` command line tool.
+*Note: The below instructions have not been tested, please open an issue if they do not work.*
 
-If you want to run for example a custom WordPress within this app, please note that the code will run behind a nginx proxy.
-Apps like WordPress require you to let the app know about that fact.
-For WordPress you would need to put this code into `wp-config.php`:
+```bash
+git clone https://github.com/mitchellurgero/cloudron-codiad
+cd cloudron-codiad
 
-```
-/*
- http://cmanios.wordpress.com/2014/04/12/nginx-https-reverse-proxy-to-wordpress-with-apache-http-and-different-port/
- http://wordpress.org/support/topic/compatibility-with-wordpress-behind-a-reverse-proxy
- https://wordpress.org/support/topic/wp_home-and-wp_siteurl
- */
-// If WordPress is behind reverse proxy which proxies https to http
-if (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
-    $_SERVER['HTTP_HOST'] = $_SERVER['HTTP_X_FORWARDED_HOST'];
+## Change as you need!
+docker build -t dockername/projectname:tagname .
+docker push dockername/projectname:tagname
 
-    if ($_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https')
-        $_SERVER['HTTPS']='on';
-}
+## End docker changes
+cloudron login
+cloudron install --image dockerhuburl/dockername/projectname:tagname
 ```
 
-## Tests
 
-* Put `HashKnownHosts no` in your `~/.ssh/config`
-* cd test
-* npm install
-* USERNAME=<> PASSWORD=<> mocha --bail test.js
+## Special Ports
 
+- Port 2222 can be used for SFTP.
+
+## Other Considerations
+
+- Logos, Trademarks, etc are copyright of their respective owners.

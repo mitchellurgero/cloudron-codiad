@@ -4,9 +4,10 @@ set -eu
 
 mkdir -p /app/data/public /run/apache2 /run/proftpd /run/cron /run/app/sessions
 
-# check if any index file exists
+
+# check if any index file exists, if it does not, let's clone Codiad to public!
 for f in /app/data/public/index.*; do
-    [ -e "$f" ] && echo "Do not override existing index file" || cp /app/code/index.php /app/data/public/index.php
+    [ -e "$f" ] && echo "Do not override existing index file" || git clone https://github.com/mitchellurgero/Codiad /app/data/public
     break
 done
 

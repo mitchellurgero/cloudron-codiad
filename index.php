@@ -1,6 +1,6 @@
 <html>
 <head>
-  <title> Cloudron LAMP app </title>
+  <title> Cloudron Codiad app </title>
 
   <style>
 
