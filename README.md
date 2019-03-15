@@ -6,13 +6,9 @@ Built from https://git.cloudron.io/cloudron/lamp-app
 
 ## Special Information
 
-- Due to either my limited knowledge of Cloudron, or a limitation of Cloudron itself, I had to generate a password for the app on first app installation.
-  This means the `--password` flag is set in CLI. It is plaintext, but better than the random password that is generated on each boot.
-  That said, you can change this first time generated password in `/app/data/temp` and then clicking "Configure" in the apps configuration screen
 
 - **I am not able to test the security of this app, however, given a strong enough password, things should be fine. In either case, I would NOT INSTALL ON PRODUCTION SYSTEMS**
 
-- I did not make VSCode or code-server. I just built this *very* *alpha* build of cloudron-vscode. Please, use at your own risk.
 
 ## Currently Installed Packages / Supported Languages
 
