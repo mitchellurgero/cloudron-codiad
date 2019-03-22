@@ -11,6 +11,9 @@ for f in /app/data/public/index.*; do
     break
 done
 
+#Copy ldap support into the folder.
+cp /app/data/ldap.php /app/data/public/ldap.php
+
 if [ ! -f "/app/data/php.ini" ]; then
     cp /etc/php/7.2/apache2/php.ini.orig /app/data/php.ini
 else

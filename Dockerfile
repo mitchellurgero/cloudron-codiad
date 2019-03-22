@@ -103,6 +103,6 @@ RUN passwd -l www-data && usermod --shell /bin/bash --home /app/data www-data
 
 # make cloudron exec sane
 WORKDIR /app/data
-
+ADD ldap.php /app/data/ldap.php
 
 CMD [ "/app/code/start.sh" ]

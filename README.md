@@ -8,7 +8,7 @@ Built from https://git.cloudron.io/cloudron/lamp-app
 
 
 - **I am not able to test the security of this app, however, given a strong enough password, things should be fine. In either case, I would NOT INSTALL ON PRODUCTION SYSTEMS**
-
+- After installing, make sure to run the Codiad setup via web browser as well! Once you complete that, add the following line to __/app/data/public/config.php__ if you want Cloudron SSO Authentication: `define("AUTH_PATH", "/app/data/public/ldap.php");`
 
 ## Currently Installed Packages / Supported Languages
 
