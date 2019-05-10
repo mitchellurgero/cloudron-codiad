@@ -1,3 +1,8 @@
+[0.0.3]
+- Added MySQL, PostgreSQL, and MongoDB support to manifest.
+- Added Redis Support to manifest.
+- Added email support to manifest.
+
 [0.0.2]
 - Added LDAP/Cloudron support. (See Post Install Information or README for instructions.)
 

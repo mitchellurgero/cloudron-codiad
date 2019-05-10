@@ -4,7 +4,7 @@
   "author": "Mitchell Urgero <info@urgero.org>",
   "description": "file://DESCRIPTION.md",
   "tagline": "Codiad running in a slimmed down version of lamp.cloudron(PHP 7)",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "healthCheckPath": "/",
   "httpPort": 80,
   "manifestVersion": 1,
@@ -15,7 +15,13 @@
   "addons": {
     "localstorage": {},
     "sendmail": {},
-    "ldap": {}
+    "ldap": {},
+    "mysql": {},
+    "postgresql": {},
+    "mongodb": {},
+    "sendmail": {},
+    "redis": {}
+
   },
   "tcpPorts": {
     "SFTP_PORT": {
@@ -27,5 +33,7 @@
   "tags": [ "apache", "php", "mysql", "hosting", "lamp", "stacks", "development" ],
   "changelog": "file://CHANGELOG",
   "minBoxVersion": "1.8.5",
-  "documentationUrl": "https://github.com/mitchellurgero/cloudron-codiad"
+  "documentationUrl": "https://github.com/mitchellurgero/cloudron-codiad",
+  "mediaLinks": [ "codiad-screenshot.png" ]
+
 }
